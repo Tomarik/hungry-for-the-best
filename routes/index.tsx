@@ -1,9 +1,8 @@
 import { Head } from "fresh/runtime";
 import { define } from "../utils.ts";
 
-export default define.page(function Home(ctx) {
+export default define.page(function Home(_ctx) {
 
-  console.log("Shared value " + ctx.state.shared);
 
   return (
     <div class="px-4 py-8 mx-auto min-h-screen" data-theme="luxury">
