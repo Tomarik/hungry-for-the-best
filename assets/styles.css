@@ -1,14 +1,8 @@
 @import "tailwindcss";
-@plugin "daisyui";
-
-.fresh-gradient {
-  background-color: rgb(10, 15, 22);
-  background-image: linear-gradient(
-    to top,
-    rgb(10, 15, 22),      /* very dark gray */
-    rgb(70, 18, 110)      /* very dark purple */
-  );
+@plugin "daisyui" {
+  themes: all;
 }
+
 
 
 @font-face {
