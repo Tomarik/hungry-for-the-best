@@ -12,28 +12,30 @@ export default define.page(function Home(ctx) {
       </Head>
       <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
 
-<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center font-[Permanent_Marker]">
+<h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center tracking-wider font-[Permanent_Marker]">
   Hungry for the Best
 </h1>
 
 
-<div className="badge badge-primary badge-xl font-[Poppins] font-semibold">Because we all deserve it</div>
+<div className="text-warning tracking-wider text-xl font-[Poppins] font-semibold">Because we all deserve it</div>
 
 
 <div className="divider"></div>
 
 
-<ul className="list w-full bg-base-100 rounded-box shadow-md">  
-  <li className="list-row p-4 md:p-6 lg:p-8 gap-4 md:gap-6 border-primary glass">
-    <div>
+<ul className="list max-w-2xl mx-auto bg-base-100 rounded-box shadow-md">  
+  <li className="list-row p-4 md:p-6 lg:p-8 gap-4 md:gap-6 border-primary glass items-center">    <div>
       <img 
-        className="size-14 md:size-22 lg:size-30 rounded-box" 
-        alt="tiki cocktail drink" 
-        src="/cocktail.webp"
-      />
+  className="size-24 md:size-32 lg:size-40 rounded-box object-cover" 
+  alt="tiki cocktail drink" 
+  src="/cocktail.webp"
+/>
     </div>
     <div>
-<div className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-[Changa_One]">Tiki Bars</div>      <div className="text-xs md:text-sm uppercase font-semibold opacity-60">
+<div className="text-lg md:text-xl lg:text-3xl xl:text-5xl 2xl:text-6xl font-[Changa_One]">Tiki Bars</div>
+
+
+    <div className="text-xs md:text-sm uppercase font-semibold opacity-60">
         6 Recommendations
       </div>
     </div>

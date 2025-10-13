@@ -1,6 +1,13 @@
 @import "tailwindcss";
-@plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
+@plugin "daisyui";
+
+.fresh-gradient {
+  background-color: rgb(10, 15, 22);
+  background-image: linear-gradient(
+    to top,
+    rgb(10, 15, 22),      /* very dark gray */
+    rgb(70, 18, 110)      /* very dark purple */
+  );
 }
 
 
@@ -28,12 +35,4 @@
   src: url("/fonts/permanent-marker-v16-latin-regular.woff2") format("woff2");
 }
 
-.fresh-gradient {
-  background-color: rgb(31, 41, 55);
-  background-image: linear-gradient(
-    to right bottom,
-    rgb(31, 41, 55),
-    rgb(126, 34, 206),
-    rgb(236, 72, 153)
-  );
-}
+
