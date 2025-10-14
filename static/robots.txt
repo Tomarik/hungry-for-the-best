@@ -1,0 +1,25 @@
+# Allow search engines (GOOD)
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: DuckDuckBot
+Allow: /
+
+# Slow down AI scrapers (not block, just rate-limit them)
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: Claude-Web
+User-agent: CCBot
+User-agent: anthropic-ai
+User-agent: Google-Extended
+Crawl-delay: 10
+Allow: /
+
+# Block aggressive/malicious scrapers
+User-agent: *
+Crawl-delay: 5
+# Allow all but rate-limit
+Allow: /
+
+# No need for bots on API endpoints
+User-agent: *
+Disallow: /api/
