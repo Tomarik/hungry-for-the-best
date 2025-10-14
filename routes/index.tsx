@@ -16,8 +16,9 @@ export default define.page(function Home(_ctx) {
 </h1>
 
 
-<div className=" tracking-normal text-xl font-[Poppins] font-semibold text-white">Because we all deserve it</div>
-
+<p className="tracking-normal text-xl font-[Poppins] font-semibold text-white">
+  Because we all deserve it
+</p>
 
 <div className="divider"></div>
 

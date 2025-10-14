@@ -1,9 +1,9 @@
 import { Head } from "fresh/runtime";
 import { define } from "../utils.ts";
-import TikiBar_TheBluePalm from "../components/TikiBar_TheBluePalm.tsx";
-import TikiBar_WusongRoad from "../components/TikiBar_WusongRoad.tsx";
-import TikiBar_LakaLono from "../components/TikiBar_LakaLono.tsx";
-import TikiBar_ThreeDots from "../components/TikiBar_ThreeDots.tsx";
+import TikiBar_TheBluePalm from "../islands/TikiBar_TheBluePalm.tsx";
+import TikiBar_WusongRoad from "../islands/TikiBar_WusongRoad.tsx";
+import TikiBar_LakaLono from "../islands/TikiBar_LakaLono.tsx";
+import TikiBar_ThreeDots from "../islands/TikiBar_ThreeDots.tsx";
 
 export default define.page(function Home(_ctx) {
 

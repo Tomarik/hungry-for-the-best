@@ -13,6 +13,8 @@ interface DrinkBadge {
     | "error";
 }
 
+console.log("TikiBar_LakaLono component loaded");
+
 interface TikiBarProps {
   rank: number;
   name: string;
