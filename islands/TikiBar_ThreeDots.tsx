@@ -1,4 +1,5 @@
 import { JSX } from "preact";
+import { useRef } from "preact/hooks";
 
 interface DrinkBadge {
   name: string;
@@ -51,13 +52,29 @@ export default function TikiBarInfo({
   const carouselImages = images && images.length > 0
     ? images
     : ["/images/three_dots/threedots_000.webp"];
+  
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const scrollToSlide = (index: number) => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+    
+    const slideWidth = carousel.offsetWidth;
+    carousel.scrollTo({
+      left: slideWidth * index,
+      behavior: 'smooth'
+    });
+  };
 
   return (
     <>
       <div className="card lg:card-side bg-base-100 shadow-xl max-w-4xl mx-auto">
         <figure className="lg:w-1/2 relative aspect-square">
           {/* Carousel */}
-          <div className="carousel w-full h-full">
+          <div 
+            ref={carouselRef}
+            className="carousel w-full h-full ![scroll-snap-type:none] overflow-x-auto"
+          >
             {carouselImages.map((img, index) => {
               const slideId = `slide_${rank}_${index}`;
               const prevIndex = index === 0
@@ -71,7 +88,7 @@ export default function TikiBarInfo({
                 <div
                   key={index}
                   id={slideId}
-                  className="carousel-item relative w-full h-full"
+                  className="carousel-item relative w-full h-full ![scroll-snap-align:none] flex-shrink-0"
                 >
                   <img
                     src={img}
@@ -82,18 +99,22 @@ export default function TikiBarInfo({
                   />
                   {carouselImages.length > 1 && (
                     <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                      <a
-                        href={`#slide_${rank}_${prevIndex}`}
+                      <button
+                        onClick={() => scrollToSlide(prevIndex)}
                         className="btn btn-circle"
+                        type="button"
+                        aria-label="Previous image"
                       >
                         ❮
-                      </a>
-                      <a
-                        href={`#slide_${rank}_${nextIndex}`}
+                      </button>
+                      <button
+                        onClick={() => scrollToSlide(nextIndex)}
                         className="btn btn-circle"
+                        type="button"
+                        aria-label="Next image"
                       >
                         ❯
-                      </a>
+                      </button>
                     </div>
                   )}
                 </div>
@@ -270,14 +291,20 @@ export default function TikiBarInfo({
           </div>
 
           <div className="modal-action">
-            <form method="dialog">
-              <button type="submit" className="btn btn-primary">Close</button>
-            </form>
+            <button 
+              type="button"
+              className="btn btn-primary"
+              onClick={() => (document.getElementById(modalId) as HTMLDialogElement)?.close()}
+            >
+              Close
+            </button>
           </div>
         </div>
-        <form method="dialog" className="modal-backdrop">
-          <button type="submit">close</button>
-        </form>
+        <div 
+          className="modal-backdrop"
+          onClick={() => (document.getElementById(modalId) as HTMLDialogElement)?.close()}
+        >
+        </div>
       </dialog>
     </>
   );
