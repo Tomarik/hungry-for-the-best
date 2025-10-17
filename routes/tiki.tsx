@@ -4,6 +4,7 @@ import TikiBar_TheBluePalm from "../islands/TikiBar_TheBluePalm.tsx";
 import TikiBar_WusongRoad from "../islands/TikiBar_WusongRoad.tsx";
 import TikiBar_LakaLono from "../islands/TikiBar_LakaLono.tsx";
 import TikiBar_ThreeDots from "../islands/TikiBar_ThreeDots.tsx";
+import TikiBar_TheGoldenTiki from "../islands/TikiBar_TheGoldenTiki.tsx";
 
 export default define.page(function Home(_ctx) {
 
@@ -39,7 +40,9 @@ export default define.page(function Home(_ctx) {
         <TikiBar_TheBluePalm />
         <div className="divider divider-accent"></div>
         <TikiBar_WusongRoad />
-        <div className="divider divider-neutral"></div>
+        <div className="divider divider-accent"></div>
+        <TikiBar_TheGoldenTiki />
+        <div className="divider divider-accent"></div>
         <TikiBar_ThreeDots />
       </div>
 
