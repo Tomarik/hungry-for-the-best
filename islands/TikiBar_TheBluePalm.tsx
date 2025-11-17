@@ -251,34 +251,11 @@ export default function TikiBarInfo({
 
           <div className="space-y-4">
             {/* Review content - customize this section as needed */}
-            <div>
-              <h4 className="font-semibold text-lg mb-2">🍹 Drinks & Menu</h4>
-              <p className="text-base-content/80">
-                The cocktail menu is impressive with classic tiki drinks and
-                creative house specials. Their Mai Tai is perfectly balanced and
-                the Zombie packs a punch!
-              </p>
-            </div>
 
-            <div>
-              <h4 className="font-semibold text-lg mb-2">
-                🏝️ Ambiance & Decor
-              </h4>
-              <p className="text-base-content/80">
-                Vibrant tiki decor with bamboo accents, tiki mugs, and tropical
-                vibes throughout. The lighting is dim and cozy, perfect for date
-                nights or hanging with friends.
-              </p>
-            </div>
 
-            <div>
-              <h4 className="font-semibold text-lg mb-2">👥 Service & Staff</h4>
-              <p className="text-base-content/80">
-                The staff really know their craft cocktails and are happy to
-                make recommendations based on your preferences. Service is
-                friendly and attentive.
-              </p>
-            </div>
+
+
+   
 
             <div>
               <h4 className="font-semibold text-lg mb-2">

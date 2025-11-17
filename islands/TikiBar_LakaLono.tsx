@@ -33,7 +33,7 @@ export default function TikiBarInfo({
   rank = 1,
   name = "Laka Lono Rum Club",
   description =
-    "A tropical escape with classic tiki cocktails and a laid-back vibe. The staff are so cool and know their craft cocktails.",
+    "A tropical escape with classic tiki cocktails and a laid-back vibe. That also becomes quite the party spot on weekends.",
   location = "Omaha, NE",
   favoriteDrinks = [
     { name: "Saturn", color: "accent" },
@@ -51,23 +51,23 @@ export default function TikiBarInfo({
   lastVisit = "2025-06-15",
   googleMapsUrl = "https://maps.app.goo.gl/MqHT3ZX6GwNixiMB9",
   websiteUrl = "http://www.lakalono.bar/",
-  bestServedBy
+  bestServedBy,
 }: Partial<TikiBarProps>): JSX.Element {
   const modalId = `modal_${rank}_${name.replace(/\s+/g, "_")}`;
   const carouselImages = images && images.length > 0
     ? images
     : ["/images/laka_lono/lakalono_000.webp"];
-  
+
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const scrollToSlide = (index: number) => {
     const carousel = carouselRef.current;
     if (!carousel) return;
-    
+
     const slideWidth = carousel.offsetWidth;
     carousel.scrollTo({
       left: slideWidth * index,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
@@ -76,7 +76,7 @@ export default function TikiBarInfo({
       <div className="card lg:card-side bg-base-100 shadow-xl max-w-4xl mx-auto">
         <figure className="lg:w-1/2 relative aspect-square">
           {/* Carousel */}
-          <div 
+          <div
             ref={carouselRef}
             className="carousel w-full h-full ![scroll-snap-type:none] overflow-x-auto"
           >
@@ -252,65 +252,61 @@ export default function TikiBarInfo({
       <dialog id={modalId} className="modal">
         <div className="modal-box max-w-2xl">
           <h3 className="font-bold text-2xl text-primary mb-4">
-            Our Review: {name}
+           {name}
           </h3>
 
           <div className="space-y-4">
-            {/* Review content - customize this section as needed */}
             <div>
-              <h4 className="font-semibold text-lg mb-2">🹹 Drinks & Menu</h4>
-              <p className="text-base-content/80">
-                The cocktail menu is impressive with classic tiki drinks and
-                creative house specials. Their Mai Tai is perfectly balanced and
-                the Zombie packs a punch!
-              </p>
-            </div>
+              <div className="text-base-content/80 space-y-4">
+                <p>
+                  Laka Lono does everything right! Whether its your first Tiki
+                  or you're a Tiki traveler like us, you will have a good
+                  experience here.
+                </p>
 
-            <div>
-              <h4 className="font-semibold text-lg mb-2">
-                🏝️ Ambiance & Decor
-              </h4>
-              <p className="text-base-content/80">
-                Vibrant tiki decor with bamboo accents, tiki mugs, and tropical
-                vibes throughout. The lighting is dim and cozy, perfect for date
-                nights or hanging with friends.
-              </p>
-            </div>
+                <p>The bar is theme-appropriate without being over the top.</p>
 
-            <div>
-              <h4 className="font-semibold text-lg mb-2">👥 Service & Staff</h4>
-              <p className="text-base-content/80">
-                The staff really know their craft cocktails and are happy to
-                make recommendations based on your preferences. Service is
-                friendly and attentive.
-              </p>
-            </div>
+                <p>
+                  The drinks are reasonably priced, well made, and delicious,
+                  and they nail the garnishes.
+                </p>
 
-            <div>
-              <h4 className="font-semibold text-lg mb-2">
-                ⭐ Overall Impression
-              </h4>
-              <p className="text-base-content/80">
-                A fantastic spot that makes you feel like you're on a mini
-                tropical vacation. Highly recommend for anyone who loves tiki
-                culture and expertly crafted cocktails.
-              </p>
+                <p>
+                  The staff are friendly and knowledgeable. We asked them to
+                  make some off-menu drinks and they nailed it.
+                </p>
+
+                <p>
+                  The last point I want to bring up is <span>consistency</span>. We have
+                  visited 4 times and each was excellent. This matters so much
+                  to us. We don't want to recommend a place that is hit or miss.
+                </p>
+
+                <p>
+                  We want you to have a great experience and Laka Lono has
+                  proven they can deliver on that promise.
+                </p>
+
+              </div>
             </div>
           </div>
 
           <div className="modal-action">
-            <button 
+            <button
               type="button"
               className="btn btn-primary"
-              onClick={() => (document.getElementById(modalId) as HTMLDialogElement)?.close()}
+              onClick={() =>
+                (document.getElementById(modalId) as HTMLDialogElement)
+                  ?.close()}
             >
               Close
             </button>
           </div>
         </div>
-        <div 
+        <div
           className="modal-backdrop"
-          onClick={() => (document.getElementById(modalId) as HTMLDialogElement)?.close()}
+          onClick={() =>
+            (document.getElementById(modalId) as HTMLDialogElement)?.close()}
         >
         </div>
       </dialog>
