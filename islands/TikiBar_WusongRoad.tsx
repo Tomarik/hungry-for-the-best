@@ -29,12 +29,11 @@ interface TikiBarProps {
 export default function TikiBarInfo({
   rank = 3,
   name = "Wusong Tiki Bar",
-  description =
-    "Boston's best tiki bar blending New England Chinese flavors with tropical escapism. Hidden in Harvard Square's historic Conductor's Building, this minority and LGBTQ+ owned two-story paradise features Asian American tapas.",
+  description = "Boston's Best Tiki Bar. Incredible vibes, Incredible decor. This spot is a must for Tiki lovers",
   location = "Cambridge, MA",
   favoriteDrinks = [
-    { name: "Mai Tai", color: "success" },
-    { name: "Piña Colada", color: "info" },
+    { name: "Mai Tai", color: "warning" },
+    { name: "Mano Sticky Rice Colada", color: "info" },
   ],
   images = [
     "/images/wusong_road/wusongroad_000.webp",
@@ -122,7 +121,7 @@ export default function TikiBarInfo({
 
         <div className="card-body lg:w-1/2">
           <div className="flex items-start justify-between gap-4">
-            <h2 className="card-title text-3xl text-primary flex-1">{name}</h2>
+            <h2 className="card-title text-3xl text-primary flex-1 font-[Changa_One] tracking-wide">{name}</h2>
             <div className="flex-shrink-0 bg-gradient-to-br from-yellow-400 to-orange-500 text-white font-bold text-xl md:text-3xl w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg">
               {rank}
             </div>
@@ -232,65 +231,33 @@ export default function TikiBarInfo({
       <dialog id={modalId} className="modal">
         <div className="modal-box max-w-2xl">
           <h3 className="font-bold text-2xl text-primary mb-4">
-            Our Review: {name}
+            {name}
           </h3>
 
           <div className="space-y-4">
-            {/* Review content */}
-            <div>
-              <h4 className="font-semibold text-lg mb-2">🍜 Food & Drinks</h4>
-              <p className="text-base-content/80">
-                Chef Jason Doo's Asian American tapas menu is outstanding. The
-                handmade baos are pillowy perfection, and the crab rangoons are
-                crispy, creamy, and absolutely addictive. Pair them with what we
-                consider the best Mai Tai in Boston - perfectly balanced with
-                quality rums and fresh ingredients. The Saturn is another
-                standout, and if you're with a group, the Scorpion Bowl is a
-                must-try experience served in a custom mug.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-lg mb-2">
-                🏝️ Ambiance & Design
-              </h4>
-              <p className="text-base-content/80">
-                Hidden in Harvard Square's historic Conductor's Building, Wusong
-                Road is a true tropical escape across two immersive floors. The
-                attention to detail is incredible - basket lamps cast warm
-                glows, sculpted clouds float overhead, and grass ceilings
-                transport you far from New England. Every corner offers
-                Instagram-worthy moments while maintaining an authentic tiki
-                vibe that never feels kitschy.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-lg mb-2">
-                💙 Community & Values
-              </h4>
-              <p className="text-base-content/80">
-                As a minority and LGBTQ+ owned establishment, Wusong Road
-                creates an inclusive, welcoming atmosphere where everyone feels
-                at home. The staff embodies this warmth, treating regulars and
-                first-timers alike with genuine hospitality. It's refreshing to
-                support a business that represents and celebrates diversity in
-                the Boston bar scene.
-              </p>
-            </div>
 
             <div>
               <h4 className="font-semibold text-lg mb-2">
                 ⭐ Overall Impression
               </h4>
               <p className="text-base-content/80">
-                Wusong Road isn't just Boston's best tiki bar - it's one of the
-                best bars, period. The fusion of New England Chinese cuisine
-                with tropical escapism creates something truly unique. Whether
-                you're a tiki enthusiast or just looking for an unforgettable
-                night out, this two-story paradise in Cambridge delivers on
-                every level. Reservations recommended, especially on weekends!
+                Wusong Road is one of the best bars in Boston. 
               </p>
+
+<p>The place looks incredible. Its a wonderful mix of popular asian culture within a Tiki bar.</p>
+<br></br>
+<p>A HUGE selection of Tiki mugs!</p>
+<p>Giant screens playing anime classics</p>
+<p>A well designed menu</p>
+<p>Food that looks great and tastes great!</p>
+<br></br>
+<p>They are doing so many thing right.</p>
+
+<p>Wusong is really is a perfect Tiki bar for causal Tiki fans. And the only thing holding this place back is consistency</p>
+<br></br>
+<p>The bartenders know how to make the menu drinks. But don't have a strong knowledge of Tiki in general.</p>
+
+<p>And so asking to go off menu isn't an option. And at times ordering the same drink. It can taste drastically different.</p>
             </div>
           </div>
 

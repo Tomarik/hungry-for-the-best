@@ -42,7 +42,7 @@ export default function TikiBarInfo({
     "/images/blue_palm/bluepalm_001.webp",
     "/images/blue_palm/bluepalm_002.webp",
   ],
-  lastVisit = "2025-06-15",
+  lastVisit = "2025-08-22",
   googleMapsUrl = "https://maps.app.goo.gl/F2A8SkjPQJfZY4gEA",
   websiteUrl = "https://bluepalmtiki.com/",
   bestServedBy = "Roxie",
@@ -51,17 +51,17 @@ export default function TikiBarInfo({
   const carouselImages = images && images.length > 0
     ? images
     : ["/images/blue_palm/bluepalm_000.webp"];
-  
+
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const scrollToSlide = (index: number) => {
     const carousel = carouselRef.current;
     if (!carousel) return;
-    
+
     const slideWidth = carousel.offsetWidth;
     carousel.scrollTo({
       left: slideWidth * index,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
@@ -70,7 +70,7 @@ export default function TikiBarInfo({
       <div className="card lg:card-side bg-base-100 shadow-xl max-w-4xl mx-auto">
         <figure className="lg:w-1/2 relative aspect-square">
           {/* Carousel */}
-          <div 
+          <div
             ref={carouselRef}
             className="carousel w-full h-full ![scroll-snap-type:none] overflow-x-auto"
           >
@@ -124,7 +124,7 @@ export default function TikiBarInfo({
 
         <div className="card-body lg:w-1/2">
           <div className="flex items-start justify-between gap-4">
-            <h2 className="card-title text-3xl text-primary flex-1">{name}</h2>
+            <h2 className="card-title text-3xl text-primary flex-1 font-[Changa_One] tracking-wide">{name}</h2>
             <div className="flex-shrink-0 bg-gradient-to-br from-yellow-400 to-orange-500 text-white font-bold text-xl md:text-3xl w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg">
               {rank}
             </div>
@@ -246,42 +246,56 @@ export default function TikiBarInfo({
       <dialog id={modalId} className="modal">
         <div className="modal-box max-w-2xl">
           <h3 className="font-bold text-2xl text-primary mb-4">
-            Our Review: {name}
+            {name}
           </h3>
 
           <div className="space-y-4">
-            {/* Review content - customize this section as needed */}
-
-
-
-
-   
-
             <div>
               <h4 className="font-semibold text-lg mb-2">
                 ⭐ Overall Impression
               </h4>
               <p className="text-base-content/80">
-                A fantastic spot that makes you feel like you're on a mini
-                tropical vacation. Highly recommend for anyone who loves tiki
-                culture and expertly crafted cocktails.
+                Escapism is how I'd desrvive The Blue Palm.
+                <br />
+                <br />
+                Its in a neighborhood surrounded by homes.
+                <br />
+                <br />
+                Its a plain brick building with a small outdoor area.
+                <br />
+                <br />
+                But once you open that door its like "Whoa". We didn't find
+                anywhere in Kansas City that matches the vibe here.
+                <br />
+                <br />
+                We loved the staff, especially Roxie! Everyone was so friendly
+                and every 2 visits they knew us. Each time visiting was a
+                wonderful and welcoming experience.
+                <br />
+                <br />
+                The Blue Palm is where we fell in love with Tiki. Its a safe
+                place to explore and learn from one of the best. And get a
+                little tipsy while doing it.
               </p>
             </div>
           </div>
 
           <div className="modal-action">
-            <button 
+            <button
               type="button"
               className="btn btn-primary"
-              onClick={() => (document.getElementById(modalId) as HTMLDialogElement)?.close()}
+              onClick={() =>
+                (document.getElementById(modalId) as HTMLDialogElement)
+                  ?.close()}
             >
               Close
             </button>
           </div>
         </div>
-        <div 
+        <div
           className="modal-backdrop"
-          onClick={() => (document.getElementById(modalId) as HTMLDialogElement)?.close()}
+          onClick={() =>
+            (document.getElementById(modalId) as HTMLDialogElement)?.close()}
         >
         </div>
       </dialog>

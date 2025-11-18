@@ -36,8 +36,8 @@ export default function TikiBarInfo({
     "A tropical escape with classic tiki cocktails and a laid-back vibe. That also becomes quite the party spot on weekends.",
   location = "Omaha, NE",
   favoriteDrinks = [
-    { name: "Saturn", color: "accent" },
-    { name: "Cobra Fang", color: "error" },
+    { name: "Puka Punch", color: "primary" },
+    { name: "Cat's Pajamas", color: "error" },
   ],
   images = [
     "/images/laka_lono/lakalono_000.webp",
@@ -48,7 +48,7 @@ export default function TikiBarInfo({
     "/images/laka_lono/lakalono_005.webp",
     "/images/laka_lono/lakalono_006.webp",
   ],
-  lastVisit = "2025-06-15",
+  lastVisit = "2025-07-4",
   googleMapsUrl = "https://maps.app.goo.gl/MqHT3ZX6GwNixiMB9",
   websiteUrl = "http://www.lakalono.bar/",
   bestServedBy,
@@ -130,7 +130,7 @@ export default function TikiBarInfo({
 
         <div className="card-body lg:w-1/2">
           <div className="flex items-start justify-between gap-4">
-            <h2 className="card-title text-3xl text-primary flex-1">{name}</h2>
+            <h2 className="card-title text-3xl text-primary flex-1 font-[Changa_One] tracking-wide">{name}</h2>
             <div className="flex-shrink-0 bg-gradient-to-br from-yellow-400 to-orange-500 text-white font-bold text-xl md:text-3xl w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg">
               {rank}
             </div>
@@ -258,6 +258,10 @@ export default function TikiBarInfo({
           <div className="space-y-4">
             <div>
               <div className="text-base-content/80 space-y-4">
+<h4 className="font-semibold text-lg mb-2">
+                ⭐ Overall Impression
+              </h4>
+
                 <p>
                   Laka Lono does everything right! Whether its your first Tiki
                   or you're a Tiki traveler like us, you will have a good
