@@ -52,17 +52,17 @@ export default function TikiBarInfo({
   const carouselImages = images && images.length > 0
     ? images
     : ["/images/three_dots/threedots_000.webp"];
-  
+
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const scrollToSlide = (index: number) => {
     const carousel = carouselRef.current;
     if (!carousel) return;
-    
+
     const slideWidth = carousel.offsetWidth;
     carousel.scrollTo({
       left: slideWidth * index,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
@@ -71,7 +71,7 @@ export default function TikiBarInfo({
       <div className="card lg:card-side bg-base-100 shadow-xl max-w-4xl mx-auto">
         <figure className="lg:w-1/2 relative aspect-square">
           {/* Carousel */}
-          <div 
+          <div
             ref={carouselRef}
             className="carousel w-full h-full ![scroll-snap-type:none] overflow-x-auto"
           >
@@ -291,18 +291,21 @@ export default function TikiBarInfo({
           </div>
 
           <div className="modal-action">
-            <button 
+            <button
               type="button"
               className="btn btn-primary"
-              onClick={() => (document.getElementById(modalId) as HTMLDialogElement)?.close()}
+              onClick={() =>
+                (document.getElementById(modalId) as HTMLDialogElement)
+                  ?.close()}
             >
               Close
             </button>
           </div>
         </div>
-        <div 
+        <div
           className="modal-backdrop"
-          onClick={() => (document.getElementById(modalId) as HTMLDialogElement)?.close()}
+          onClick={() =>
+            (document.getElementById(modalId) as HTMLDialogElement)?.close()}
         >
         </div>
       </dialog>

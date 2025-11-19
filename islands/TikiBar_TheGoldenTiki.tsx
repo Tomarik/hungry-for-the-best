@@ -52,17 +52,17 @@ export default function TikiBarInfo({
   const carouselImages = images && images.length > 0
     ? images
     : ["/images/three_dots/threedots_000.webp"];
-  
+
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const scrollToSlide = (index: number) => {
     const carousel = carouselRef.current;
     if (!carousel) return;
-    
+
     const slideWidth = carousel.offsetWidth;
     carousel.scrollTo({
       left: slideWidth * index,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
@@ -71,7 +71,7 @@ export default function TikiBarInfo({
       <div className="card lg:card-side bg-base-100 shadow-xl max-w-4xl mx-auto">
         <figure className="lg:w-1/2 relative aspect-square">
           {/* Carousel */}
-          <div 
+          <div
             ref={carouselRef}
             className="carousel w-full h-full ![scroll-snap-type:none] overflow-x-auto"
           >
@@ -244,84 +244,98 @@ export default function TikiBarInfo({
       <dialog id={modalId} className="modal">
         <div className="modal-box max-w-2xl">
           <h3 className="font-bold text-2xl text-primary mb-4">
-          Our Review: {name}
-        </h3>
-        
-        <div className="space-y-4">
-          <div className="text-base-content/80 mb-4">
-            <p>
-              This Tiki bar is our number #1 spot because it's a great spot for everyone. 
-              We have visited 4 times and were impressed each visit. Whether it was a crazy 
-              Saturday night and it's standing room only, or when it's a chill relaxing 
-              Sunday afternoon with room to wander and explore the space.
-            </p>
-          </div>
+            Our Review: {name}
+          </h3>
 
-          <div>
-            <h4 className="font-semibold text-lg mb-2">📘 Drinks & Menu</h4>
-            <p className="text-base-content/80">
-              We love a good menu. Well designed with pictures of the cocktails. The menu 
-              itself is often a small detail places miss, so we appreciate the effort Laka 
-              Lono puts into theirs. The drinks themselves are all well made, and the garnish 
-              was not an afterthought. They put a lot of effort in making their drinks pop. 
-              If you love Tiki then you know the garnish is a major component! As for our 
-              favorite drinks, the Puka Punch was my favorite, and Painkiller is a flavor 
-              profile we absolutely love. But we tried so many. Cat's Pajamas Clarified Punch 
-              is an absolute treat! We didn't try any food ourselves, but everything coming 
-              out of the kitchen was well plated. And if it's any indication, there were 
-              actually quite a few people picking up take out there. And last, the drinks 
-              are super affordable. For such excellent cocktails that taste great and look 
-              fantastic, their prices are super competitive.
-            </p>
-          </div>
+          <div className="space-y-4">
+            <div className="text-base-content/80 mb-4">
+              <p>
+                This Tiki bar is our number #1 spot because it's a great spot
+                for everyone. We have visited 4 times and were impressed each
+                visit. Whether it was a crazy Saturday night and it's standing
+                room only, or when it's a chill relaxing Sunday afternoon with
+                room to wander and explore the space.
+              </p>
+            </div>
 
-          <div>
-            <h4 className="font-semibold text-lg mb-2">🏝️ Ambiance & Decor</h4>
-            <p className="text-base-content/80">
-              The bar is beautifully designed. Palm roof, bamboo accents. Bubbly water 
-              features in the background. Swinging chairs, smooth curved plank tables. 
-              And an assortment of fun Tiki cups! The vibe is wonderful and transformative. 
-              You'll be completely disconnected from the fact that you are in downtown 
-              Omaha Nebraska.
-            </p>
-          </div>
+            <div>
+              <h4 className="font-semibold text-lg mb-2">📘 Drinks & Menu</h4>
+              <p className="text-base-content/80">
+                We love a good menu. Well designed with pictures of the
+                cocktails. The menu itself is often a small detail places miss,
+                so we appreciate the effort Laka Lono puts into theirs. The
+                drinks themselves are all well made, and the garnish was not an
+                afterthought. They put a lot of effort in making their drinks
+                pop. If you love Tiki then you know the garnish is a major
+                component! As for our favorite drinks, the Puka Punch was my
+                favorite, and Painkiller is a flavor profile we absolutely love.
+                But we tried so many. Cat's Pajamas Clarified Punch is an
+                absolute treat! We didn't try any food ourselves, but everything
+                coming out of the kitchen was well plated. And if it's any
+                indication, there were actually quite a few people picking up
+                take out there. And last, the drinks are super affordable. For
+                such excellent cocktails that taste great and look fantastic,
+                their prices are super competitive.
+              </p>
+            </div>
 
-          <div>
-            <h4 className="font-semibold text-lg mb-2">👥 Service & Staff</h4>
-            <p className="text-base-content/80">
-              The staff really know their craft cocktails. After sampling the menu, we asked 
-              the bartenders to go off menu and try to make some other classic Tiki drinks 
-              like Cobras Fang. Their confidence, consistency, and friendly demeanor really 
-              stood out. And they're so fast! If you go on a busy night, don't be put off. 
-              They can make cocktails fast without sacrificing quality. Seriously we can't 
-              stress enough how friendly and knowledgeable their staff is.
-            </p>
-          </div>
+            <div>
+              <h4 className="font-semibold text-lg mb-2">
+                🏝️ Ambiance & Decor
+              </h4>
+              <p className="text-base-content/80">
+                The bar is beautifully designed. Palm roof, bamboo accents.
+                Bubbly water features in the background. Swinging chairs, smooth
+                curved plank tables. And an assortment of fun Tiki cups! The
+                vibe is wonderful and transformative. You'll be completely
+                disconnected from the fact that you are in downtown Omaha
+                Nebraska.
+              </p>
+            </div>
 
-          <div>
-            <h4 className="font-semibold text-lg mb-2">⭐ Overall Impression</h4>
-            <p className="text-base-content/80">
-              Laka Lono doesn't deserve the #1 spot. They earned it. They do everything right 
-              and create an experience that I know, whether this is your first Tiki or you're 
-              a Tiki traveler like us, you will have a good experience here.
-            </p>
-          </div>
-        </div>
+            <div>
+              <h4 className="font-semibold text-lg mb-2">👥 Service & Staff</h4>
+              <p className="text-base-content/80">
+                The staff really know their craft cocktails. After sampling the
+                menu, we asked the bartenders to go off menu and try to make
+                some other classic Tiki drinks like Cobras Fang. Their
+                confidence, consistency, and friendly demeanor really stood out.
+                And they're so fast! If you go on a busy night, don't be put
+                off. They can make cocktails fast without sacrificing quality.
+                Seriously we can't stress enough how friendly and knowledgeable
+                their staff is.
+              </p>
+            </div>
 
+            <div>
+              <h4 className="font-semibold text-lg mb-2">
+                ⭐ Overall Impression
+              </h4>
+              <p className="text-base-content/80">
+                Laka Lono doesn't deserve the #1 spot. They earned it. They do
+                everything right and create an experience that I know, whether
+                this is your first Tiki or you're a Tiki traveler like us, you
+                will have a good experience here.
+              </p>
+            </div>
+          </div>
 
           <div className="modal-action">
-            <button 
+            <button
               type="button"
               className="btn btn-primary"
-              onClick={() => (document.getElementById(modalId) as HTMLDialogElement)?.close()}
+              onClick={() =>
+                (document.getElementById(modalId) as HTMLDialogElement)
+                  ?.close()}
             >
               Close
             </button>
           </div>
         </div>
-        <div 
+        <div
           className="modal-backdrop"
-          onClick={() => (document.getElementById(modalId) as HTMLDialogElement)?.close()}
+          onClick={() =>
+            (document.getElementById(modalId) as HTMLDialogElement)?.close()}
         >
         </div>
       </dialog>

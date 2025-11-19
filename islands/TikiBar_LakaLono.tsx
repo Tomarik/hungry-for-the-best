@@ -130,7 +130,9 @@ export default function TikiBarInfo({
 
         <div className="card-body lg:w-1/2">
           <div className="flex items-start justify-between gap-4">
-            <h2 className="card-title text-3xl text-primary flex-1 font-[Changa_One] tracking-wide">{name}</h2>
+            <h2 className="card-title text-3xl text-primary flex-1 font-[Changa_One] tracking-wide">
+              {name}
+            </h2>
             <div className="flex-shrink-0 bg-gradient-to-br from-yellow-400 to-orange-500 text-white font-bold text-xl md:text-3xl w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg">
               {rank}
             </div>
@@ -252,15 +254,15 @@ export default function TikiBarInfo({
       <dialog id={modalId} className="modal">
         <div className="modal-box max-w-2xl">
           <h3 className="font-bold text-2xl text-primary mb-4">
-           {name}
+            {name}
           </h3>
 
           <div className="space-y-4">
             <div>
               <div className="text-base-content/80 space-y-4">
-<h4 className="font-semibold text-lg mb-2">
-                ⭐ Overall Impression
-              </h4>
+                <h4 className="font-semibold text-lg mb-2">
+                  ⭐ Overall Impression
+                </h4>
 
                 <p>
                   Laka Lono does everything right! Whether its your first Tiki
@@ -281,16 +283,16 @@ export default function TikiBarInfo({
                 </p>
 
                 <p>
-                  The last point I want to bring up is <span>consistency</span>. We have
-                  visited 4 times and each was excellent. This matters so much
-                  to us. We don't want to recommend a place that is hit or miss.
+                  The last point I want to bring up is{" "}
+                  <span>consistency</span>. We have visited 4 times and each was
+                  excellent. This matters so much to us. We don't want to
+                  recommend a place that is hit or miss.
                 </p>
 
                 <p>
                   We want you to have a great experience and Laka Lono has
                   proven they can deliver on that promise.
                 </p>
-
               </div>
             </div>
           </div>

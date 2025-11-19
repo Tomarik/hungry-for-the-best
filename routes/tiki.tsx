@@ -13,16 +13,15 @@ export default define.page(function Home(_ctx) {
         <title>Hungry for the Best - Tiki</title>
       </Head>
       <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-center tracking-wider font-[Permanent_Marker]">
-          Best Tiki
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center tracking-widest font-[Permanent_Marker] text-primary">
+          Hungry for the Best Tiki
         </h1>
-      </div>
 
-      <div className="text-warning tracking-wider text-xl font-[Poppins] font-semibold text-center">
-        <p className="text-warning tracking-wider text-xl font-[Poppins] font-semibold inline">
-          Only the best make the List
+        <p className="tracking-normal text-xl font-[Poppins] font-semibold text-white">
+          Only the best make the list
         </p>
       </div>
+
 
       <div class="mt-12 max-w-screen-lg mx-auto">
         <TikiBar_LakaLono />

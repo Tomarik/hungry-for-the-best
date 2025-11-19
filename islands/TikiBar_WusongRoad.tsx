@@ -29,7 +29,8 @@ interface TikiBarProps {
 export default function TikiBarInfo({
   rank = 3,
   name = "Wusong Tiki Bar",
-  description = "Boston's Best Tiki Bar. Incredible vibes, Incredible decor. This spot is a must for Tiki lovers",
+  description =
+    "Boston's Best Tiki Bar. Incredible vibes, Incredible decor. This spot is a must for Tiki lovers",
   location = "Cambridge, MA",
   favoriteDrinks = [
     { name: "Mai Tai", color: "warning" },
@@ -48,17 +49,17 @@ export default function TikiBarInfo({
   const carouselImages = images && images.length > 0
     ? images
     : ["/images/wusong_road/wusongroad_000.webp"];
-  
+
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const scrollToSlide = (index: number) => {
     const carousel = carouselRef.current;
     if (!carousel) return;
-    
+
     const slideWidth = carousel.offsetWidth;
     carousel.scrollTo({
       left: slideWidth * index,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
@@ -67,7 +68,7 @@ export default function TikiBarInfo({
       <div className="card lg:card-side bg-base-100 shadow-xl max-w-4xl mx-auto">
         <figure className="lg:w-1/2 relative aspect-square">
           {/* Carousel */}
-          <div 
+          <div
             ref={carouselRef}
             className="carousel w-full h-full ![scroll-snap-type:none] overflow-x-auto"
           >
@@ -121,7 +122,9 @@ export default function TikiBarInfo({
 
         <div className="card-body lg:w-1/2">
           <div className="flex items-start justify-between gap-4">
-            <h2 className="card-title text-3xl text-primary flex-1 font-[Changa_One] tracking-wide">{name}</h2>
+            <h2 className="card-title text-3xl text-primary flex-1 font-[Changa_One] tracking-wide">
+              {name}
+            </h2>
             <div className="flex-shrink-0 bg-gradient-to-br from-yellow-400 to-orange-500 text-white font-bold text-xl md:text-3xl w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg">
               {rank}
             </div>
@@ -235,45 +238,59 @@ export default function TikiBarInfo({
           </h3>
 
           <div className="space-y-4">
-
             <div>
               <h4 className="font-semibold text-lg mb-2">
                 ⭐ Overall Impression
               </h4>
               <p className="text-base-content/80">
-                Wusong Road is one of the best bars in Boston. 
+                Wusong Road is one of the best bars in Boston.
               </p>
 
-<p>The place looks incredible. Its a wonderful mix of popular asian culture within a Tiki bar.</p>
-<br></br>
-<p>A HUGE selection of Tiki mugs!</p>
-<p>Giant screens playing anime classics</p>
-<p>A well designed menu</p>
-<p>Food that looks great and tastes great!</p>
-<br></br>
-<p>They are doing so many thing right.</p>
+              <p>
+                The place looks incredible. Its a wonderful mix of popular asian
+                culture within a Tiki bar.
+              </p>
+              <br></br>
+              <p>A HUGE selection of Tiki mugs!</p>
+              <p>Giant screens playing anime classics</p>
+              <p>A well designed menu</p>
+              <p>Food that looks great and tastes great!</p>
+              <br></br>
+              <p>They are doing so many thing right.</p>
 
-<p>Wusong is really is a perfect Tiki bar for causal Tiki fans. And the only thing holding this place back is consistency</p>
-<br></br>
-<p>The bartenders know how to make the menu drinks. But don't have a strong knowledge of Tiki in general.</p>
+              <p>
+                Wusong is really is a perfect Tiki bar for causal Tiki fans. And
+                the only thing holding this place back is consistency
+              </p>
+              <br></br>
+              <p>
+                The bartenders know how to make the menu drinks. But don't have
+                a strong knowledge of Tiki in general.
+              </p>
 
-<p>And so asking to go off menu isn't an option. And at times ordering the same drink. It can taste drastically different.</p>
+              <p>
+                And so asking to go off menu isn't an option. And at times
+                ordering the same drink. It can taste drastically different.
+              </p>
             </div>
           </div>
 
           <div className="modal-action">
-            <button 
+            <button
               type="button"
               className="btn btn-primary"
-              onClick={() => (document.getElementById(modalId) as HTMLDialogElement)?.close()}
+              onClick={() =>
+                (document.getElementById(modalId) as HTMLDialogElement)
+                  ?.close()}
             >
               Close
             </button>
           </div>
         </div>
-        <div 
+        <div
           className="modal-backdrop"
-          onClick={() => (document.getElementById(modalId) as HTMLDialogElement)?.close()}
+          onClick={() =>
+            (document.getElementById(modalId) as HTMLDialogElement)?.close()}
         >
         </div>
       </dialog>
