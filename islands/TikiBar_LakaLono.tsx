@@ -33,7 +33,7 @@ export default function TikiBarInfo({
   rank = 1,
   name = "Laka Lono Rum Club",
   description =
-    "A tropical escape with classic tiki cocktails and a laid-back vibe. That also becomes quite the party spot on weekends.",
+    "Beautiful cocktails, a great layout, and a place that sometimes is super. And other times it's a party down here.",
   location = "Omaha, NE",
   favoriteDrinks = [
     { name: "Puka Punch", color: "primary" },
@@ -47,6 +47,11 @@ export default function TikiBarInfo({
     "/images/laka_lono/lakalono_004.webp",
     "/images/laka_lono/lakalono_005.webp",
     "/images/laka_lono/lakalono_006.webp",
+    "/images/laka_lono/lakalono_007.webp",
+    "/images/laka_lono/lakalono_008.webp",
+    "/images/laka_lono/lakalono_009.webp",
+    "/images/laka_lono/lakalono_010.webp",
+
   ],
   lastVisit = "2025-07-4",
   googleMapsUrl = "https://maps.app.goo.gl/MqHT3ZX6GwNixiMB9",

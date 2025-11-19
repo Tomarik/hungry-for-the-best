@@ -31,7 +31,7 @@ export default function TikiBarInfo({
   rank = 2,
   name = "The Blue Palm",
   description =
-    "A tropical escape with classic tiki cocktails and a laid-back vibe. The staff are so cool and know their craft cocktails.",
+    "Escape Kansas City at Blue Palm. Seriously this place is what people mean when they 'Hidden Gem'.",
   location = "Kansas City, KS",
   favoriteDrinks = [
     { name: "Saturn", color: "accent" },
@@ -41,6 +41,12 @@ export default function TikiBarInfo({
     "/images/blue_palm/bluepalm_000.webp",
     "/images/blue_palm/bluepalm_001.webp",
     "/images/blue_palm/bluepalm_002.webp",
+    "/images/blue_palm/bluepalm_003.webp",
+    "/images/blue_palm/bluepalm_004.webp",
+    "/images/blue_palm/bluepalm_005.webp",
+    "/images/blue_palm/bluepalm_006.webp",
+    "/images/blue_palm/bluepalm_007.webp",
+    "/images/blue_palm/bluepalm_008.webp",
   ],
   lastVisit = "2025-08-22",
   googleMapsUrl = "https://maps.app.goo.gl/F2A8SkjPQJfZY4gEA",
