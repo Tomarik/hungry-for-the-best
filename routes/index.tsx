@@ -8,9 +8,6 @@ export default define.page(function Home(_ctx) {
         <title>Hungry for the Best | Home</title>
       </Head>
       <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center tracking-widest font-[Permanent_Marker]">
-          Hungry for the Best
-        </h1>
 
         <p className="tracking-normal text-xl font-[Poppins] font-semibold text-white">
           Only the best make the list
