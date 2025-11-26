@@ -257,37 +257,63 @@ export default function TikiBarInfo({
             {name}
           </h3>
 
-          <div className="space-y-4">
+          <div className="space-y-6">
+            {/* Overall Impression */}
             <div>
-              <h4 className="font-semibold text-lg mb-2">
-                ⭐ Overall Impression
-              </h4>
-              <p className="text-base-content/80">
-                Escapism is how I'd desrvive The Blue Palm.
-                <br />
-                <br />
-                Its in a neighborhood surrounded by homes.
-                <br />
-                <br />
-                Its a plain brick building with a small outdoor area.
-                <br />
-                <br />
-                But once you open that door its like "Whoa". We didn't find
-                anywhere in Kansas City that matches the vibe here.
-                <br />
-                <br />
-                We loved the staff, especially Roxie! Everyone was so friendly
-                and every 2 visits they knew us. Each time visiting was a
-                wonderful and welcoming experience.
-                <br />
-                <br />
-                The Blue Palm is where we fell in love with Tiki. Its a safe
-                place to explore and learn from one of the best. And get a
-                little tipsy while doing it.
-              </p>
-            </div>
-          </div>
+              <div className="text-base-content/80 space-y-4">
+                <p>
+                  Escapism is how I'd describe The Blue Palm.
+                </p>
 
+                <p>
+                  It's in a neighborhood surrounded by homes. It's a plain brick
+                  building with a small outdoor area.
+                </p>
+
+                <p>
+                  But once you open that door it's like "Whoa". We didn't find
+                  anywhere in Kansas City that matches the vibe here.
+                </p>
+
+                <p>
+                  We loved the staff, especially Roxie! Everyone was so friendly
+                  and every 2 visits they knew us. Each time visiting was a
+                  wonderful and welcoming experience.
+                </p>
+
+                <p>
+                  The Blue Palm is where we fell in love with Tiki. It's a safe
+                  place to explore and learn from one of the best. And get a
+                  little tipsy while doing it.
+                </p>
+              </div>
+            </div>
+
+            {/* Pros and Cons */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Pros */}
+              <div className="card bg-success/10 border border-success/20">
+                <div className="card-body">
+                  <h4 className="card-title text-success">✅ Pros</h4>
+                  <ul className="list-disc list-inside space-y-2 text-sm">
+                    <li>Incredible escapist atmosphere</li>
+                    <li>Friendly staff, especially Roxie</li>
+                    <li>Perfect for Tiki beginners and experts</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Cons */}
+              <div className="card bg-error/10 border border-error/20">
+                <div className="card-body">
+                  <h4 className="card-title text-error">❌ Cons</h4>
+                  <ul className="list-disc list-inside space-y-2 text-sm">
+                    <li>Drink consistency</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>{" "}
           <div className="modal-action">
             <button
               type="button"

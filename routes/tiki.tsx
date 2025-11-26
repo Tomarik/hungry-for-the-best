@@ -13,13 +13,14 @@ export default define.page(function Home(_ctx) {
         <title>Hungry for the Best - Tiki</title>
       </Head>
       <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
-
-
-        <p className="tracking-normal text-xl font-[Poppins] font-semibold text-white">
-          Only the best make the list
+        <p className="tracking-widest text-sm font-[Bebas_Neue] font-semibold text-white">
+          Only the best{" "}
+          <span className="text-3xl font-[Changa_One] tracking-widest leading-none align-baseline mx-4">
+            Tiki
+          </span>
+          make the list
         </p>
       </div>
-
 
       <div class="mt-12 max-w-screen-lg mx-auto">
         <TikiBar_LakaLono />

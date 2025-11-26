@@ -9,7 +9,7 @@ export default define.page(function Home(_ctx) {
       </Head>
       <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
 
-        <p className="tracking-normal text-xl font-[Poppins] font-semibold text-white">
+        <p className="tracking-widest text-sm font-[Bebas_Neue] font-semibold text-white">
           Only the best make the list
         </p>
 
@@ -31,7 +31,7 @@ export default define.page(function Home(_ctx) {
 
     <div>
       <div className="text-lg md:text-xl lg:text-3xl xl:text-5xl 2xl:text-6xl font-[Changa_One]">
-        Tiki Bars
+        Tiki
       </div>
 
       <div className="text-xs md:text-sm uppercase font-semibold opacity-60">

@@ -52,11 +52,20 @@ export default function Navbar() {
                 </label>
               </li>
               <li className="bg-transparent">
-  <a className="text-xl hover:text-primary hover:bg-transparent" href="/">Home</a>
-</li>
-<li className="bg-transparent">
-  <a className="text-xl hover:text-primary hover:bg-transparent" href="/tiki">Tiki Bars</a>
-</li>
+                <a
+                  className="text-xl hover:text-primary hover:bg-transparent font-[Poppins]"
+                  href="/"
+                >
+                  Home
+                </a>
+              </li>
+              <li className="bg-transparent">
+                <a
+                  className="text-xl hover:text-primary hover:bg-transparent font-[Changa_One] tracking-widest"
+                  href="/tiki">
+                  Tiki
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -64,7 +73,8 @@ export default function Navbar() {
       <div className="max-w-screen-md mx-auto flex flex-col items-center justify-center">
         <a
           href="/"
-          className="text-xl md:text-2xl lg:text-3xl font-[Permanent_Marker] tracking-widest no-underline">
+          className="text-xl md:text-2xl lg:text-3xl font-[Permanent_Marker] tracking-widest no-underline"
+        >
           Hungry for the Best
         </a>
       </div>

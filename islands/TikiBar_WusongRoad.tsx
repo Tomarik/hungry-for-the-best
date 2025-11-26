@@ -237,44 +237,63 @@ export default function TikiBarInfo({
             {name}
           </h3>
 
-          <div className="space-y-4">
-            <div>
-              <h4 className="font-semibold text-lg mb-2">
-                ⭐ Overall Impression
-              </h4>
-              <p className="text-base-content/80">
-                Wusong Road is one of the best bars in Boston.
-              </p>
+          <div className="space-y-6">
+  {/* Overall Impression */}
+  <div>
+    <div className="text-base-content/80 space-y-4">
+      <p>
+        Wusong Road is one of the best bars in Boston.
+      </p>
 
-              <p>
-                The place looks incredible. Its a wonderful mix of popular asian
-                culture within a Tiki bar.
-              </p>
-              <br></br>
-              <p>A HUGE selection of Tiki mugs!</p>
-              <p>Giant screens playing anime classics</p>
-              <p>A well designed menu</p>
-              <p>Food that looks great and tastes great!</p>
-              <br></br>
-              <p>They are doing so many thing right.</p>
+      <p>
+        The place looks incredible. It's a wonderful mix of popular Asian culture within a Tiki bar.
+      </p>
 
-              <p>
-                Wusong is really is a perfect Tiki bar for causal Tiki fans. And
-                the only thing holding this place back is consistency
-              </p>
-              <br></br>
-              <p>
-                The bartenders know how to make the menu drinks. But don't have
-                a strong knowledge of Tiki in general.
-              </p>
+      <p>
+        They have a HUGE selection of Tiki mugs, giant screens playing anime classics, a well designed menu, and food that looks great and tastes great!
+      </p>
 
-              <p>
-                And so asking to go off menu isn't an option. And at times
-                ordering the same drink. It can taste drastically different.
-              </p>
-            </div>
-          </div>
+      <p>
+        They are doing so many things right.
+      </p>
 
+      <p>
+        Wusong is really a perfect Tiki bar for casual Tiki fans. And the only thing holding this place back is consistency.
+      </p>
+
+      <p>
+        The bartenders know how to make the menu drinks, but don't have a strong knowledge of Tiki in general. So asking to go off-menu isn't an option. And at times ordering the same drink can taste drastically different.
+      </p>
+    </div>
+  </div>
+
+  {/* Pros and Cons */}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {/* Pros */}
+    <div className="card bg-success/10 border border-success/20">
+      <div className="card-body">
+        <h4 className="card-title text-success">✅ Pros</h4>
+        <ul className="list-disc list-inside space-y-2 text-sm">
+          <li>Wonderful mix of Asian culture and Tiki</li>
+          <li>Huge selection of Tiki mugs</li>
+          <li>Well designed menu</li>
+          <li>Good bar food</li>
+        </ul>
+      </div>
+    </div>
+
+    {/* Cons */}
+    <div className="card bg-error/10 border border-error/20">
+      <div className="card-body">
+        <h4 className="card-title text-error">❌ Cons</h4>
+        <ul className="list-disc list-inside space-y-2 text-sm">
+          <li>Inconsistent drinks</li>
+          <li>Bartenders lack general Tiki knowledge</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
           <div className="modal-action">
             <button
               type="button"

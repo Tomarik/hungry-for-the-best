@@ -51,7 +51,6 @@ export default function TikiBarInfo({
     "/images/laka_lono/lakalono_008.webp",
     "/images/laka_lono/lakalono_009.webp",
     "/images/laka_lono/lakalono_010.webp",
-
   ],
   lastVisit = "2025-07-4",
   googleMapsUrl = "https://maps.app.goo.gl/MqHT3ZX6GwNixiMB9",
@@ -262,15 +261,12 @@ export default function TikiBarInfo({
             {name}
           </h3>
 
-          <div className="space-y-4">
+          <div className="space-y-6">
+            {/* Overall Impression */}
             <div>
-              <div className="text-base-content/80 space-y-4">
-                <h4 className="font-semibold text-lg mb-2">
-                  ⭐ Overall Impression
-                </h4>
-
+              <div className="text-base-content/80 space-y-6 my-6">
                 <p>
-                  Laka Lono does everything right! Whether its your first Tiki
+                  Laka Lono does everything right! Whether it's your first Tiki
                   or you're a Tiki traveler like us, you will have a good
                   experience here.
                 </p>
@@ -288,10 +284,9 @@ export default function TikiBarInfo({
                 </p>
 
                 <p>
-                  The last point I want to bring up is{" "}
-                  <span>consistency</span>. We have visited 4 times and each was
-                  excellent. This matters so much to us. We don't want to
-                  recommend a place that is hit or miss.
+                  The last point I want to bring up is consistency. We have
+                  visited 4 times and each was excellent. This matters so much
+                  to us. We don't want to recommend a place that is hit or miss.
                 </p>
 
                 <p>
@@ -300,8 +295,33 @@ export default function TikiBarInfo({
                 </p>
               </div>
             </div>
-          </div>
 
+            {/* Pros and Cons */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Pros */}
+              <div className="card bg-success/10 border border-success/20">
+                <div className="card-body">
+                  <h4 className="card-title text-success">✅ Pros</h4>
+                  <ul className="list-disc list-inside space-y-2 text-sm">
+                    <li>Excellent decor throughout</li>
+                    <li>Reasonably priced, well-made drinks</li>
+                    <li>Friendly and knowledgeable staff</li>
+                    <li>Consistent across multiple visits</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Cons */}
+              <div className="card bg-error/10 border border-error/20">
+                <div className="card-body">
+                  <h4 className="card-title text-error">❌ Cons</h4>
+                  <ul className="list-disc list-inside space-y-2 text-sm">
+                    <li>Popular spot that can get crowded</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="modal-action">
             <button
               type="button"
