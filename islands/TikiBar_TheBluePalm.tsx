@@ -41,7 +41,6 @@ export default function TikiBarInfo({
     "/images/blue_palm/bluepalm_000.webp",
     "/images/blue_palm/bluepalm_001.webp",
     "/images/blue_palm/bluepalm_002.webp",
-    "/images/blue_palm/bluepalm_003.webp",
     "/images/blue_palm/bluepalm_004.webp",
     "/images/blue_palm/bluepalm_005.webp",
     "/images/blue_palm/bluepalm_006.webp",
@@ -290,7 +289,7 @@ export default function TikiBarInfo({
             </div>
 
             {/* Pros and Cons */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-3">
               {/* Pros */}
               <div className="card bg-success/10 border border-success/20">
                 <div className="card-body">

@@ -34,12 +34,16 @@ export default function TikiBarInfo({
   location = "Cambridge, MA",
   favoriteDrinks = [
     { name: "Mai Tai", color: "warning" },
-    { name: "Mano Sticky Rice Colada", color: "info" },
+    { name: "Mango Sticky Rice Colada", color: "info" },
   ],
   images = [
     "/images/wusong_road/wusongroad_000.webp",
     "/images/wusong_road/wusongroad_001.webp",
     "/images/wusong_road/wusongroad_002.webp",
+    "/images/wusong_road/wusongroad_003.webp",
+    "/images/wusong_road/wusongroad_004.webp",
+    "/images/wusong_road/wusongroad_005.webp",
+    "/images/wusong_road/wusongroad_006.webp",
   ],
   lastVisit = "2025-09-20",
   googleMapsUrl = "https://maps.app.goo.gl/EmzjRDfhpjuAK98a7",
@@ -268,7 +272,7 @@ export default function TikiBarInfo({
   </div>
 
   {/* Pros and Cons */}
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div className="space-y-3">
     {/* Pros */}
     <div className="card bg-success/10 border border-success/20">
       <div className="card-body">
