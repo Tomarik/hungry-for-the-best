@@ -34,14 +34,17 @@ export default function TikiBarInfo({
     "A tropical escape with classic tiki cocktails and a laid-back vibe. The staff are so cool and know their craft cocktails.",
   location = "Chicago, IL",
   favoriteDrinks = [
-    { name: "Saturn", color: "accent" },
-    { name: "Cobra Fang", color: "error" },
+    { name: "Three Dots & a Dash", color: "info" },
+    { name: "Jet Pilot", color: "error" },
   ],
   images = [
     "/images/three_dots/threedots_000.webp",
     "/images/three_dots/threedots_001.webp",
     "/images/three_dots/threedots_002.webp",
     "/images/three_dots/threedots_003.webp",
+    "/images/three_dots/threedots_004.webp",
+    "/images/three_dots/threedots_005.webp",
+    "/images/three_dots/threedots_006.webp",
   ],
   lastVisit = "2025-08-01",
   googleMapsUrl = "https://maps.app.goo.gl/Af5E5hUnudrep7gB8",
@@ -240,57 +243,66 @@ export default function TikiBarInfo({
         </div>
       </div>
 
-      {/* Modal with review */}
+     {/* Modal with review */}
       <dialog id={modalId} className="modal">
-        <div className="modal-box max-w-2xl">
-          <h3 className="font-bold text-2xl text-primary mb-4">
-            Our Review: {name}
+        <div className="modal-box max-w-2xl max-h-[90vh] overflow-y-auto p-6 md:p-8">
+          <h3 className="font-bold text-2xl text-primary mb-6">
+            {name}
           </h3>
 
-          <div className="space-y-4">
-            {/* Review content - customize this section as needed */}
+          <div className="space-y-6">
             <div>
-              <h4 className="font-semibold text-lg mb-2">🍹 Drinks & Menu</h4>
-              <p className="text-base-content/80">
-                The cocktail menu is impressive with classic tiki drinks and
-                creative house specials. Their Mai Tai is perfectly balanced and
-                the Zombie packs a punch!
-              </p>
+              <div className="text-base-content/80 space-y-4">
+                <p>
+                  We only to to visit once but it made a big impression on us.
+                </p>
+
+                <p>
+                  Staff matters! The tattooed dude who was our bartender made the experience.
+                  He was friendly, knowledgeable about Tiki. And just nailed every damn cocktail he made us.
+                </p>
+
+                <p>
+                  The bar has a decent theme. But it's so fucking dark in there. If you are not sitting at the bar. You'll be using your phone to read the menu.
+                </p>
+
+                <p>
+                  Three Dots and a Dash made our list because this bartender. We've had a lot of great Tiki drinks.
+                  But dude put this place on our map. And we hope if you visit you get to experience his craft.
+                </p>
+
+              </div>
             </div>
 
-            <div>
-              <h4 className="font-semibold text-lg mb-2">
-                🏝️ Ambiance & Decor
-              </h4>
-              <p className="text-base-content/80">
-                Vibrant tiki decor with bamboo accents, tiki mugs, and tropical
-                vibes throughout. The lighting is dim and cozy, perfect for date
-                nights or hanging with friends.
-              </p>
-            </div>
+            {/* Pros and Cons */}
+            <div className="space-y-3">
+              {/* Pros */}
+              <div className="card bg-success/10 border border-success/20">
+                <div className="card-body">
+                  <h4 className="card-title text-success">✅ Pros</h4>
+                  <ul className="list-disc list-inside space-y-2 text-sm">
+                    <li>Well-designed menu</li>
+                    <li>Excellent drinks and garnishes</li>
+                    <li>Tattooed bartender is King 👑</li>
+                    <li>Drinks are strong</li>
+                  </ul>
+                </div>
+              </div>
 
-            <div>
-              <h4 className="font-semibold text-lg mb-2">👥 Service & Staff</h4>
-              <p className="text-base-content/80">
-                The staff really know their craft cocktails and are happy to
-                make recommendations based on your preferences. Service is
-                friendly and attentive.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-lg mb-2">
-                ⭐ Overall Impression
-              </h4>
-              <p className="text-base-content/80">
-                A fantastic spot that makes you feel like you're on a mini
-                tropical vacation. Highly recommend for anyone who loves tiki
-                culture and expertly crafted cocktails.
-              </p>
+              {/* Cons */}
+              <div className="card bg-error/10 border border-error/20">
+                <div className="card-body">
+                  <h4 className="card-title text-error">❌ Cons</h4>
+                  <ul className="list-disc list-inside space-y-2 text-sm">
+                    <li>Dark as hell</li>
+                    <li>Drinks are spendy but its Chicago</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="modal-action">
+          <div className="modal-action mt-6">
             <button
               type="button"
               className="btn btn-primary"

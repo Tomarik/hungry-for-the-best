@@ -31,17 +31,18 @@ export default function TikiBarInfo({
   rank = 0,
   name = "The Golden Tiki",
   description =
-    "Its off the strip. But so worth the trip if you love tiki drinks.",
+    "Fuck the strip. This place is worth the trip if you love Tiki drinks.",
   location = "Las Vegas, NV",
   favoriteDrinks = [
-    { name: "Saturn", color: "accent" },
-    { name: "Cobra Fang", color: "error" },
+    { name: "Tiki Mule", color: "accent" },
+    { name: "Mai Tai", color: "warning" },
   ],
   images = [
-    "/images/three_dots/threedots_000.webp",
-    "/images/three_dots/threedots_001.webp",
-    "/images/three_dots/threedots_002.webp",
-    "/images/three_dots/threedots_003.webp",
+    "/images/golden_tiki/goldentiki_000.webp",
+    "/images/golden_tiki/goldentiki_001.webp",
+    "/images/golden_tiki/goldentiki_002.webp",
+    "/images/golden_tiki/goldentiki_003.webp",
+    "/images/golden_tiki/goldentiki_004.webp"
   ],
   lastVisit = "2024-06-01",
   googleMapsUrl = "https://maps.app.goo.gl/1Dsvz2kZemGqWzRq7",
@@ -125,7 +126,7 @@ export default function TikiBarInfo({
 
         <div className="card-body lg:w-1/2">
           <div className="flex items-start justify-between gap-4">
-            <h2 className="card-title text-3xl text-default flex-1">{name}</h2>
+            <h2 className="card-title text-3xl text-default flex-1 font-[League_Spartan]">{name}</h2>
           </div>
 
           <div>
@@ -242,85 +243,69 @@ export default function TikiBarInfo({
 
       {/* Modal with review */}
       <dialog id={modalId} className="modal">
-        <div className="modal-box max-w-2xl">
-          <h3 className="font-bold text-2xl text-primary mb-4">
-            Our Review: {name}
+        <div className="modal-box max-w-2xl max-h-[90vh] overflow-y-auto p-6 md:p-8">
+          <h3 className="font-bold text-2xl text-primary mb-6">
+            {name}
           </h3>
 
-          <div className="space-y-4">
-            <div className="text-base-content/80 mb-4">
-              <p>
-                This Tiki bar is our number #1 spot because it's a great spot
-                for everyone. We have visited 4 times and were impressed each
-                visit. Whether it was a crazy Saturday night and it's standing
-                room only, or when it's a chill relaxing Sunday afternoon with
-                room to wander and explore the space.
-              </p>
+          <div className="space-y-6">
+            <div>
+              <div className="text-base-content/80 space-y-4">
+                <p>
+                  There is a reason this place is always amongst people's favorite Tiki spots. It delivers on all fronts.
+                </p>
+
+                <p>
+                  The staff are friendly, knowledgeable about Tiki. And every cocktail they made us was delicious and well crafted.
+                  Garnish is so important!
+                </p>
+
+                <p>
+                  The bar is themed perfectly. And really leaves you completely immersed in the Tiki experience.
+                  With a touch of Vegas since there are video poker machines.
+                  Its jarring to walk outside back into a strip mall in desert after spending time here.
+                </p>
+
+                <p>
+                  The menu is well designed with pictures of each drink so you know what to expect. We appreciate a good menu!
+                  The prices are very reasonable too, especially for Vegas. The quality and price alomst don't make sense.
+                  out.
+                </p>
+
+                <p>
+                  We've only gotten to visit Golden Tiki once. But when we are back in Vegas it will be the first and last place we visit.
+                </p>
+              </div>
             </div>
 
-            <div>
-              <h4 className="font-semibold text-lg mb-2">📘 Drinks & Menu</h4>
-              <p className="text-base-content/80">
-                We love a good menu. Well designed with pictures of the
-                cocktails. The menu itself is often a small detail places miss,
-                so we appreciate the effort Laka Lono puts into theirs. The
-                drinks themselves are all well made, and the garnish was not an
-                afterthought. They put a lot of effort in making their drinks
-                pop. If you love Tiki then you know the garnish is a major
-                component! As for our favorite drinks, the Puka Punch was my
-                favorite, and Painkiller is a flavor profile we absolutely love.
-                But we tried so many. Cat's Pajamas Clarified Punch is an
-                absolute treat! We didn't try any food ourselves, but everything
-                coming out of the kitchen was well plated. And if it's any
-                indication, there were actually quite a few people picking up
-                take out there. And last, the drinks are super affordable. For
-                such excellent cocktails that taste great and look fantastic,
-                their prices are super competitive.
-              </p>
-            </div>
+            {/* Pros and Cons */}
+            <div className="space-y-3">
+              {/* Pros */}
+              <div className="card bg-success/10 border border-success/20">
+                <div className="card-body">
+                  <h4 className="card-title text-success">✅ Pros</h4>
+                  <ul className="list-disc list-inside space-y-2 text-sm">
+                    <li>Well-designed menu</li>
+                    <li>Excellent drinks and garnishes</li>
+                    <li>Super affordable prices</li>
+                  </ul>
+                </div>
+              </div>
 
-            <div>
-              <h4 className="font-semibold text-lg mb-2">
-                🏝️ Ambiance & Decor
-              </h4>
-              <p className="text-base-content/80">
-                The bar is beautifully designed. Palm roof, bamboo accents.
-                Bubbly water features in the background. Swinging chairs, smooth
-                curved plank tables. And an assortment of fun Tiki cups! The
-                vibe is wonderful and transformative. You'll be completely
-                disconnected from the fact that you are in downtown Omaha
-                Nebraska.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-lg mb-2">👥 Service & Staff</h4>
-              <p className="text-base-content/80">
-                The staff really know their craft cocktails. After sampling the
-                menu, we asked the bartenders to go off menu and try to make
-                some other classic Tiki drinks like Cobras Fang. Their
-                confidence, consistency, and friendly demeanor really stood out.
-                And they're so fast! If you go on a busy night, don't be put
-                off. They can make cocktails fast without sacrificing quality.
-                Seriously we can't stress enough how friendly and knowledgeable
-                their staff is.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-lg mb-2">
-                ⭐ Overall Impression
-              </h4>
-              <p className="text-base-content/80">
-                Laka Lono doesn't deserve the #1 spot. They earned it. They do
-                everything right and create an experience that I know, whether
-                this is your first Tiki or you're a Tiki traveler like us, you
-                will have a good experience here.
-              </p>
+              {/* Cons */}
+              <div className="card bg-error/10 border border-error/20">
+                <div className="card-body">
+                  <h4 className="card-title text-error">❌ Cons</h4>
+                  <ul className="list-disc list-inside space-y-2 text-sm">
+                    <li>Bit of a drive</li>
+                    <li>Drinks aren't super strong</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="modal-action">
+          <div className="modal-action mt-6">
             <button
               type="button"
               className="btn btn-primary"
