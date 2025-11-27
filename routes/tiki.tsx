@@ -5,6 +5,7 @@ import TikiBar_WusongRoad from "../islands/TikiBar_WusongRoad.tsx";
 import TikiBar_LakaLono from "../islands/TikiBar_LakaLono.tsx";
 import TikiBar_ThreeDots from "../islands/TikiBar_ThreeDots.tsx";
 import TikiBar_TheGoldenTiki from "../islands/TikiBar_TheGoldenTiki.tsx";
+import TikiBar_RumClub from "../islands/TikiBar_RumClub.tsx";
 
 export default define.page(function Home(_ctx) {
   return (
@@ -24,14 +25,18 @@ export default define.page(function Home(_ctx) {
 
       <div class="mt-12 max-w-screen-lg mx-auto">
         <TikiBar_LakaLono />
-        <div className="divider divider-accent"></div>
+        <div className="divider"></div>
         <TikiBar_TheBluePalm />
-        <div className="divider divider-accent"></div>
+        <div className="divider"></div>
         <TikiBar_WusongRoad />
-        <div className="divider divider-accent"></div>
+        <div className="divider"></div>
+        <div className="divider divider-primary"></div>
+        <div className="divider"></div>
         <TikiBar_TheGoldenTiki />
-        <div className="divider divider-accent"></div>
+        <div className="divider"></div>
         <TikiBar_ThreeDots />
+        <div className="divider"></div>
+        <TikiBar_RumClub />
       </div>
     </div>
   );

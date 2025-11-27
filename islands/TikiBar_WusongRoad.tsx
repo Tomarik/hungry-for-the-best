@@ -47,7 +47,7 @@ export default function TikiBarInfo({
   ],
   lastVisit = "2025-09-20",
   googleMapsUrl = "https://maps.app.goo.gl/EmzjRDfhpjuAK98a7",
-  websiteUrl = "https://www.wusongroad.com/",
+  websiteUrl = "https://www.wusongroad.com",
 }: Partial<TikiBarProps>): JSX.Element {
   const modalId = `modal_${rank}_${name.replace(/\s+/g, "_")}`;
   const carouselImages = images && images.length > 0

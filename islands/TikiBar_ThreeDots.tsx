@@ -48,7 +48,7 @@ export default function TikiBarInfo({
   ],
   lastVisit = "2025-08-01",
   googleMapsUrl = "https://maps.app.goo.gl/Af5E5hUnudrep7gB8",
-  websiteUrl = "https://www.threedotschicago.com/",
+  websiteUrl = "https://www.threedotschicago.com",
   bestServedBy = "Tattoo Guy",
 }: Partial<TikiBarProps>): JSX.Element {
   const modalId = `modal_${rank}_${name.replace(/\s+/g, "_")}`;
@@ -128,7 +128,7 @@ export default function TikiBarInfo({
 
         <div className="card-body lg:w-1/2">
           <div className="flex items-start justify-between gap-4">
-            <h2 className="card-title text-3xl text-default flex-1">{name}</h2>
+            <h2 className="card-title text-3xl text-default flex-1 font-[League_Spartan]">{name}</h2>
           </div>
 
           <div>

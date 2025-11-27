@@ -14,8 +14,6 @@ interface DrinkBadge {
     | "error";
 }
 
-console.log("TikiBar_LakaLono component loaded");
-
 interface TikiBarProps {
   rank: number;
   name: string;
@@ -30,37 +28,31 @@ interface TikiBarProps {
 }
 
 export default function TikiBarInfo({
-  rank = 1,
-  name = "Laka Lono Rum Club",
+  rank = 0,
+  name = "Rum Club",
   description =
-    "Beautiful cocktails, a great layout, and a place that sometimes is super. And other times it's a party down here.",
-  location = "Omaha, NE",
+    "A small spot that packs a punch.",
+  location = "Portland, OR",
   favoriteDrinks = [
-    { name: "Puka Punch", color: "primary" },
-    { name: "Cat's Pajamas", color: "error" },
+    { name: "You! Me! Dancing!", color: "warning" },
   ],
   images = [
-    "/images/laka_lono/lakalono_000.webp",
-    "/images/laka_lono/lakalono_001.webp",
-    "/images/laka_lono/lakalono_002.webp",
-    "/images/laka_lono/lakalono_003.webp",
-    "/images/laka_lono/lakalono_004.webp",
-    "/images/laka_lono/lakalono_005.webp",
-    "/images/laka_lono/lakalono_006.webp",
-    "/images/laka_lono/lakalono_007.webp",
-    "/images/laka_lono/lakalono_008.webp",
-    "/images/laka_lono/lakalono_009.webp",
-    "/images/laka_lono/lakalono_010.webp",
+    "/images/rum_club/rumclub_000.webp",
+    "/images/rum_club/rumclub_001.webp",
+    "/images/rum_club/rumclub_002.webp",
+    "/images/rum_club/rumclub_003.webp",
+    "/images/rum_club/rumclub_004.webp",
+    "/images/rum_club/rumclub_005.webp",
   ],
-  lastVisit = "2025-07-4",
-  googleMapsUrl = "https://maps.app.goo.gl/MqHT3ZX6GwNixiMB9",
-  websiteUrl = "http://www.lakalono.bar",
-  bestServedBy,
+  lastVisit = "2024-10-20",
+  googleMapsUrl = "https://maps.app.goo.gl/CL4ScY1fNkRMgM2Z8",
+  websiteUrl = "https://rumclubpdx.com",
+  bestServedBy = "",
 }: Partial<TikiBarProps>): JSX.Element {
   const modalId = `modal_${rank}_${name.replace(/\s+/g, "_")}`;
   const carouselImages = images && images.length > 0
     ? images
-    : ["/images/laka_lono/lakalono_000.webp"];
+    : ["/images/rum_club/rumclub_000.webp"];
 
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -134,12 +126,7 @@ export default function TikiBarInfo({
 
         <div className="card-body lg:w-1/2">
           <div className="flex items-start justify-between gap-4">
-            <h2 className="card-title text-3xl text-primary flex-1 font-[Changa_One] tracking-wide">
-              {name}
-            </h2>
-            <div className="flex-shrink-0 bg-gradient-to-br from-yellow-400 to-orange-500 text-white font-bold text-xl md:text-3xl w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-lg">
-              {rank}
-            </div>
+            <h2 className="card-title text-3xl text-default flex-1">{name}</h2>
           </div>
 
           <div>
@@ -254,7 +241,7 @@ export default function TikiBarInfo({
         </div>
       </div>
 
-      {/* Modal with review */}
+     {/* Modal with review */}
       <dialog id={modalId} className="modal">
         <div className="modal-box max-w-2xl max-h-[90vh] overflow-y-auto p-6 md:p-8">
           <h3 className="font-bold text-2xl text-primary mb-6">
@@ -262,37 +249,30 @@ export default function TikiBarInfo({
           </h3>
 
           <div className="space-y-6">
-            {/* Overall Impression */}
             <div>
-              <div className="text-base-content/80 space-y-6 my-6">
+              <div className="text-base-content/80 space-y-4">
                 <p>
-                  Laka Lono does everything right! Whether it's your first Tiki
-                  or you're a Tiki traveler like us, you will have a good
-                  experience here.
-                </p>
-
-                <p>The bar is theme-appropriate without being over the top.</p>
-
-                <p>
-                  The drinks are reasonably priced, well made, and delicious,
-                  and they nail the garnishes.
+                  This one is an honorable mention. Rum Club doesn't advertise itself as a Tiki bar.
+                  But as "A craft cocktail bar with a rum problem".
                 </p>
 
                 <p>
-                  The staff are friendly and knowledgeable. We asked them to
-                  make some off-menu drinks and they nailed it.
+                  We've been here twice and both experiences were good. The first time they were slammed.
+                  But they had no problems making us drinks. We did not feel ignored.
                 </p>
 
                 <p>
-                  The last point I want to bring up is consistency. We have
-                  visited 4 times and each was excellent. This matters so much
-                  to us. We don't want to recommend a place that is hit or miss.
+                  The second time we stopped it was right at open. So much more relaxed. Got a chance to chat with the staff and ask about their favorite drinks
+                  and what on the menu is good.
                 </p>
 
+                <p>The staff were great and knowledgeable. And that really set this place apart.</p>
+
                 <p>
-                  We want you to have a great experience and Laka Lono has
-                  proven they can deliver on that promise.
+                  We haven't eaten here yet, but the food smells incredible and we almost canceled our dinner plans to stay and eat.
+                  Next time we are in Portland we will be back here in a hurry.
                 </p>
+
               </div>
             </div>
 
@@ -303,10 +283,9 @@ export default function TikiBarInfo({
                 <div className="card-body">
                   <h4 className="card-title text-success">✅ Pros</h4>
                   <ul className="list-disc list-inside space-y-2 text-sm">
-                    <li>Excellent decor throughout</li>
-                    <li>Reasonably priced, well-made drinks</li>
-                    <li>Friendly and knowledgeable staff</li>
-                    <li>Consistent across multiple visits</li>
+                    <li>Affordable</li>
+                    <li>Solid cocktails</li>
+                    <li>Food looks and smells great</li>
                   </ul>
                 </div>
               </div>
@@ -316,12 +295,14 @@ export default function TikiBarInfo({
                 <div className="card-body">
                   <h4 className="card-title text-error">❌ Cons</h4>
                   <ul className="list-disc list-inside space-y-2 text-sm">
-                    <li>Popular spot that can get crowded</li>
+                    <li>Small so it can be crowded</li>
+                    <li>Lacking a tropical vibe</li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
+
           <div className="modal-action mt-6">
             <button
               type="button"

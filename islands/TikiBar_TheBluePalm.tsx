@@ -49,7 +49,7 @@ export default function TikiBarInfo({
   ],
   lastVisit = "2025-08-22",
   googleMapsUrl = "https://maps.app.goo.gl/F2A8SkjPQJfZY4gEA",
-  websiteUrl = "https://bluepalmtiki.com/",
+  websiteUrl = "https://bluepalmtiki.com",
   bestServedBy = "Roxie",
 }: Partial<TikiBarProps>): JSX.Element {
   const modalId = `modal_${rank}_${name.replace(/\s+/g, "_")}`;

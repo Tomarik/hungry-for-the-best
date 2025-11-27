@@ -46,7 +46,7 @@ export default function TikiBarInfo({
   ],
   lastVisit = "2024-06-01",
   googleMapsUrl = "https://maps.app.goo.gl/1Dsvz2kZemGqWzRq7",
-  websiteUrl = "https://www.thegoldentiki.com/",
+  websiteUrl = "https://www.thegoldentiki.com",
   bestServedBy = "",
 }: Partial<TikiBarProps>): JSX.Element {
   const modalId = `modal_${rank}_${name.replace(/\s+/g, "_")}`;

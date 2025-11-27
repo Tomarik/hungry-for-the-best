@@ -62,10 +62,17 @@ export default function Navbar() {
               <li className="bg-transparent">
                 <a
                   className="text-xl hover:text-primary hover:bg-transparent font-[Changa_One] tracking-widest"
-                  href="/tiki">
+                  href="/tiki"
+                >
                   Tiki
                 </a>
               </li>
+              {/* Version text at bottom */}
+              <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+                <span className="text-xs text-base-content/50">
+                  Version 11.27.2025
+                </span>
+              </div>
             </ul>
           </div>
         </div>
