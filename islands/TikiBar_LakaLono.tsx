@@ -297,7 +297,7 @@ export default function TikiBarInfo({
             </div>
 
             {/* Pros and Cons */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-3">
               {/* Pros */}
               <div className="card bg-success/10 border border-success/20">
                 <div className="card-body">
