@@ -256,8 +256,8 @@ export default function TikiBarInfo({
 
       {/* Modal with review */}
       <dialog id={modalId} className="modal">
-        <div className="modal-box max-w-2xl">
-          <h3 className="font-bold text-2xl text-primary mb-4">
+        <div className="modal-box max-w-2xl max-h-[90vh] overflow-y-auto p-6 md:p-8">
+          <h3 className="font-bold text-2xl text-primary mb-6">
             {name}
           </h3>
 
@@ -322,7 +322,7 @@ export default function TikiBarInfo({
               </div>
             </div>
           </div>
-          <div className="modal-action">
+          <div className="modal-action mt-6">
             <button
               type="button"
               className="btn btn-primary"
