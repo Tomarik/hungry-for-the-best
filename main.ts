@@ -24,7 +24,32 @@ const exampleLoggerMiddleware = define.middleware((ctx) => {
   console.log(`${ctx.req.method} ${ctx.req.url}`);
   return ctx.next();
 });
+
 app.use(exampleLoggerMiddleware);
+
+// Auth guard for admin routes
+app.use(async (ctx) => {
+  const url = new URL(ctx.req.url);
+  
+  if (url.pathname.startsWith("/trivia-admin")) {
+    const { verifySession } = await import("./services/auth.ts");
+    
+    const cookies = ctx.req.headers.get("cookie");
+    const sessionId = cookies
+      ?.split(";")
+      .find((c) => c.trim().startsWith("session="))
+      ?.split("=")[1];
+
+    if (!sessionId || !(await verifySession(sessionId))) {
+      return new Response(null, {
+        status: 302,
+        headers: { Location: "/" },
+      });
+    }
+  }
+
+  return await ctx.next();
+});
 
 // Include file-system based routes here
 app.fsRoutes();

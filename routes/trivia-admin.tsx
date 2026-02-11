@@ -1,30 +1,26 @@
+import { Head } from "fresh/runtime";
 import { define } from "../utils.ts";
-import { verifySession } from "../services/auth.ts";
-
-
-export const handler = define.handlers({
-  async GET(ctx) {
-    const cookies = ctx.req.headers.get("cookie");
-    const sessionId = cookies
-      ?.split(";")
-      .find((c) => c.trim().startsWith("session="))
-      ?.split("=")[1];
-
-    if (!sessionId || !(await verifySession(sessionId))) {
-      return new Response(null, {
-        status: 302,
-        headers: { Location: "/" },
-      });
-    }
-
-    return ctx.render(null);
-  },
-});
+import TriviaAdminPanel from "../islands/TriviaAdminPanel.tsx";
+import LogoutButton from "../islands/LogoutButton.tsx";
 
 export default define.page(function TriviaAdmin() {
   return (
-    <div data-theme="dracula">
-      <h1>Admin Page Works</h1>
+    <div className="px-4 py-8 mx-auto min-h-screen bg-base-100" data-theme="dracula">
+      <Head>
+        <title>Hungry for the Best | Trivia Admin</title>
+      </Head>
+      <div className="max-w-screen-xl mx-auto">
+        <div className="mb-8">
+          <div className="flex justify-between items-center mb-2">
+            <h1 className="text-4xl font-bold text-base-content">Trivia Admin Portal</h1>
+            <LogoutButton />
+          </div>
+          <p className="text-center text-base-content/60">
+            Manage trivia questions for your game nights
+          </p>
+        </div>
+        <TriviaAdminPanel />
+      </div>
     </div>
   );
 });
