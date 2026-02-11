@@ -3,7 +3,6 @@ import { define } from "../utils.ts";
 import { verifySession } from "../services/auth.ts";
 import TriviaAdminPanel from "../islands/TriviaAdminPanel.tsx";
 
-
 export const handler = define.handlers({
   async GET(ctx) {
     // Check for session cookie
@@ -13,16 +12,14 @@ export const handler = define.handlers({
       .find((c) => c.trim().startsWith("session="))
       ?.split("=")[1];
 
-    // Verify session
+    // Verify session — redirect to home (login) if invalid
     if (!sessionId || !(await verifySession(sessionId))) {
-      // Redirect to login
       return new Response(null, {
         status: 302,
-        headers: { Location: "/login" },
+        headers: { Location: "/" },
       });
     }
 
-    // Continue to render page
     return ctx.render(null);
   },
 });
@@ -30,7 +27,7 @@ export const handler = define.handlers({
 export default define.page(function TriviaAdmin(_ctx) {
   const handleLogout = async () => {
     await fetch("/api/auth/logout", { method: "POST" });
-    globalThis.location.href = "/login";
+    globalThis.location.href = "/";
   };
 
   return (

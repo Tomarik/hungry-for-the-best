@@ -18,7 +18,7 @@ export default function LoginForm() {
       });
 
       if (response.ok) {
-        // Redirect to admin page
+        // Redirect to admin page after successful login
         globalThis.location.href = "/trivia-admin";
       } else {
         const data = await response.json();
@@ -37,7 +37,7 @@ export default function LoginForm() {
       <div className="card w-96 bg-base-200 shadow-xl">
         <div className="card-body">
           <h2 className="card-title text-2xl mb-4">Admin Login</h2>
-          
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="form-control">
               <label className="label">
@@ -48,7 +48,9 @@ export default function LoginForm() {
                 placeholder="Enter admin password"
                 className="input input-bordered"
                 value={password.value}
-                onInput={(e) => password.value = (e.currentTarget as HTMLInputElement).value}
+                onInput={(e) =>
+                  (password.value = (e.currentTarget as HTMLInputElement).value)
+                }
                 disabled={loading.value}
                 required
               />

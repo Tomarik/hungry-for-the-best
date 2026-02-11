@@ -1,5 +1,4 @@
 import { define } from "../utils.ts";
-import Navbar from "../components/navbar.tsx";
 
 export default define.page(function App({ Component }) {
   return (
@@ -10,7 +9,6 @@ export default define.page(function App({ Component }) {
         <title>Hungry for the Best</title>
       </head>
       <body>
-        <Navbar />
         <Component />
       </body>
     </html>
