@@ -1,4 +1,4 @@
-import { define } from "../../../utils.ts";
+import { define } from "../../../../utils.ts";
 import {
   createTrivia,
   getAllTrivia,
@@ -6,9 +6,9 @@ import {
   getTriviaByTag,
   getUnansweredByDifficulty,
   getFlaggedTrivia,
-} from "../../../services/trivia.ts";
-import { DIFFICULTIES, TAGS } from "../../../types/trivia.ts";
-import type { Difficulty, Tag } from "../../../types/trivia.ts";
+} from "../../../../services/trivia.ts";
+import { DIFFICULTIES, TAGS } from "../../../../types/trivia.ts";
+import type { Difficulty, Tag } from "../../../../types/trivia.ts";
 
 export const handler = define.handlers({
   // GET /api/trivia/questions
