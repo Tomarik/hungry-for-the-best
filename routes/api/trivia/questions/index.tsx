@@ -108,11 +108,19 @@ export const handler = define.handlers({
         }
       }
 
+      if (body.customTags !== undefined && !Array.isArray(body.customTags)) {
+        return new Response(
+          JSON.stringify({ error: "customTags must be an array" }),
+          { status: 400, headers: { "Content-Type": "application/json" } },
+        );
+      }
+
       const question = await createTrivia({
         question: body.question,
         answers: body.answers,
         difficulty: body.difficulty,
         tags: body.tags,
+        customTags: body.customTags ?? [],
       });
 
       return new Response(

@@ -1,9 +1,37 @@
 export type Difficulty = "easy" | "medium" | "hard";
 
-export type Tag = "geography" | "history" | "science" | "pop_culture";
+export type Tag =
+
+  | "general"
+  | "geography"
+  | "history"
+  | "science"
+  | "pop_culture"
+  | "music"
+  | "space"
+  | "tv"
+  | "movie"
+  | "brand"
+  | "tech"
+  | "sport"
+  | "art";
 
 export const DIFFICULTIES: Difficulty[] = ["easy", "medium", "hard"];
-export const TAGS: Tag[] = ["geography", "history", "science", "pop_culture"];
+export const TAGS: Tag[] = [
+  "general",
+  "geography",
+  "history",
+  "science",
+  "pop_culture",
+  "music",
+  "space",
+  "tv",
+  "movie",
+  "brand",
+  "tech",
+  "sport",
+  "art",
+];
 
 export interface TriviaQuestion {
   id: string;
@@ -11,9 +39,9 @@ export interface TriviaQuestion {
   answers: string[];
   difficulty: Difficulty;
   tags: Tag[];
+  customTags: string[];
   answeredCorrectly: boolean;
   answeredOn: string | null;
-  isDeleted: boolean;
   flaggedForReview: boolean;
 }
 
@@ -22,4 +50,5 @@ export interface CreateTriviaInput {
   answers: string[];
   difficulty: Difficulty;
   tags: Tag[];
+  customTags: string[];
 }

@@ -28,9 +28,9 @@ export async function createTrivia(
     answers: input.answers,
     difficulty: input.difficulty,
     tags: input.tags,
+    customTags: input.customTags ?? [],
     answeredCorrectly: false,
     answeredOn: null,
-    isDeleted: false,
     flaggedForReview: false,
   };
 
@@ -66,7 +66,7 @@ export async function getTriviaById(
   return entry.value;
 }
 
-// --- Read (all, excluding soft-deleted) ---
+// --- Read (all) ---
 
 export async function getAllTrivia(): Promise<TriviaQuestion[]> {
   const kv = await getKv();
@@ -76,10 +76,7 @@ export async function getAllTrivia(): Promise<TriviaQuestion[]> {
   for await (const entry of entries) {
     // Skip secondary index keys — primary keys have exactly 2 parts
     if (entry.key.length !== 2) continue;
-    const question = entry.value;
-    if (!question.isDeleted) {
-      results.push(question);
-    }
+    results.push(entry.value);
   }
 
   return results;
@@ -98,9 +95,8 @@ export async function getTriviaByDifficulty(
 
   for await (const entry of entries) {
     const id = entry.value;
-    // getTriviaById handles its own getKv call, but since we are awaiting, it is safe.
     const question = await getTriviaById(id);
-    if (question && !question.isDeleted) {
+    if (question) {
       results.push(question);
     }
   }
@@ -118,7 +114,7 @@ export async function getTriviaByTag(tag: Tag): Promise<TriviaQuestion[]> {
   for await (const entry of entries) {
     const id = entry.value;
     const question = await getTriviaById(id);
-    if (question && !question.isDeleted) {
+    if (question) {
       results.push(question);
     }
   }
@@ -148,9 +144,8 @@ export async function updateTrivia(
   id: string,
   updates: Partial<Omit<TriviaQuestion, "id">>,
 ): Promise<TriviaQuestion | null> {
-  // We need the KV instance for the atomic operation later
   const kv = await getKv();
-  
+
   const existing = await getTriviaById(id);
   if (!existing) return null;
 
@@ -214,17 +209,9 @@ export async function toggleFlagged(
   return updateTrivia(id, { flaggedForReview: !existing.flaggedForReview });
 }
 
-// --- Soft delete ---
+// --- Delete (permanently removes from KV) ---
 
-export function deleteTrivia(
-  id: string,
-): Promise<TriviaQuestion | null> {
-  return updateTrivia(id, { isDeleted: true });
-}
-
-// --- Hard delete (permanently removes from KV) ---
-
-export async function hardDeleteTrivia(id: string): Promise<boolean> {
+export async function deleteTrivia(id: string): Promise<boolean> {
   const kv = await getKv();
   const existing = await getTriviaById(id);
   if (!existing) return false;

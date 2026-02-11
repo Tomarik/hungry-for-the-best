@@ -3,7 +3,21 @@ import { useEffect } from "preact/hooks";
 import type { TriviaQuestion, Difficulty, Tag } from "../types/trivia.ts";
 
 const DIFFICULTIES = ["easy", "medium", "hard"] as const;
-const TAGS = ["geography", "history", "science", "pop_culture"] as const;
+const TAGS = [
+  "art",
+  "brand",
+  "general",
+  "geography",
+  "history",
+  "movie",
+  "music",
+  "pop_culture",
+  "science",
+  "space",
+  "sport",
+  "tech",
+  "tv",
+] as const;
 
 export default function TriviaAdminPanel() {
   const questions = useSignal<TriviaQuestion[]>([]);
@@ -13,29 +27,30 @@ export default function TriviaAdminPanel() {
   const filterFlagged = useSignal(false);
   const showModal = useSignal(false);
   const editingQuestion = useSignal<TriviaQuestion | null>(null);
-  
+
   // Form state
   const formQuestion = useSignal("");
   const formAnswers = useSignal("");
   const formDifficulty = useSignal<Difficulty>("easy");
-  const formTags = useSignal<Tag[]>(["geography"]);
+  const formTags = useSignal<Tag[]>(["general"]);
+  const formCustomTags = useSignal("");
 
   // Filtered questions
   const filteredQuestions = useComputed(() => {
     let filtered = questions.value;
-    
+
     if (filterDifficulty.value !== "all") {
       filtered = filtered.filter(q => q.difficulty === filterDifficulty.value);
     }
-    
+
     if (filterTag.value !== "all") {
       filtered = filtered.filter(q => q.tags.includes(filterTag.value as Tag));
     }
-    
+
     if (filterFlagged.value) {
       filtered = filtered.filter(q => q.flaggedForReview);
     }
-    
+
     return filtered;
   });
 
@@ -65,7 +80,8 @@ export default function TriviaAdminPanel() {
     formQuestion.value = "";
     formAnswers.value = "";
     formDifficulty.value = "easy";
-    formTags.value = ["geography"];
+    formTags.value = ["general"];
+    formCustomTags.value = "";
     showModal.value = true;
   };
 
@@ -76,17 +92,23 @@ export default function TriviaAdminPanel() {
     formAnswers.value = question.answers.join(", ");
     formDifficulty.value = question.difficulty;
     formTags.value = question.tags;
+    formCustomTags.value = (question.customTags ?? []).join(", ");
     showModal.value = true;
   };
 
   // Save question (create or update)
   const saveQuestion = async (e: Event) => {
     e.preventDefault();
-    
+
     const answers = formAnswers.value
       .split(",")
       .map(a => a.trim())
       .filter(a => a.length > 0);
+
+    const customTags = formCustomTags.value
+      .split(",")
+      .map(t => t.trim())
+      .filter(t => t.length > 0);
 
     if (!formQuestion.value || answers.length === 0 || formTags.value.length === 0) {
       alert("Please fill in all required fields");
@@ -98,11 +120,12 @@ export default function TriviaAdminPanel() {
       answers,
       difficulty: formDifficulty.value,
       tags: formTags.value,
+      customTags,
     };
 
     try {
       loading.value = true;
-      
+
       if (editingQuestion.value) {
         // Update existing
         const response = await fetch(`/api/trivia/questions/${editingQuestion.value.id}`, {
@@ -110,7 +133,7 @@ export default function TriviaAdminPanel() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
-        
+
         if (!response.ok) throw new Error("Failed to update");
       } else {
         // Create new
@@ -119,7 +142,7 @@ export default function TriviaAdminPanel() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
-        
+
         if (!response.ok) throw new Error("Failed to create");
       }
 
@@ -133,21 +156,16 @@ export default function TriviaAdminPanel() {
     }
   };
 
-  // Delete question
-  const deleteQuestion = async (id: string, hard = false) => {
-    const confirmMsg = hard 
-      ? "Permanently delete this question? This cannot be undone!"
-      : "Soft delete this question?";
-    
-    if (!confirm(confirmMsg)) return;
+  // Delete question (always permanent)
+  const deleteQuestion = async (id: string) => {
+    if (!confirm("Permanently delete this question? This cannot be undone!")) return;
 
     try {
       loading.value = true;
-      const url = hard ? `/api/trivia/questions/${id}?hard=true` : `/api/trivia/questions/${id}`;
-      const response = await fetch(url, { method: "DELETE" });
-      
+      const response = await fetch(`/api/trivia/questions/${id}`, { method: "DELETE" });
+
       if (!response.ok) throw new Error("Failed to delete");
-      
+
       await loadQuestions();
     } catch (error) {
       console.error("Failed to delete question:", error);
@@ -163,9 +181,9 @@ export default function TriviaAdminPanel() {
       const response = await fetch(`/api/trivia/questions/${id}/flag`, {
         method: "POST",
       });
-      
+
       if (!response.ok) throw new Error("Failed to toggle flag");
-      
+
       await loadQuestions();
     } catch (error) {
       console.error("Failed to toggle flag:", error);
@@ -184,9 +202,9 @@ export default function TriviaAdminPanel() {
       const response = await fetch("/api/trivia/questions/reset-all", {
         method: "POST",
       });
-      
+
       if (!response.ok) throw new Error("Failed to reset");
-      
+
       const data = await response.json();
       alert(`Reset ${data.count} questions`);
       await loadQuestions();
@@ -215,7 +233,7 @@ export default function TriviaAdminPanel() {
           <div className="flex flex-wrap gap-4 items-center justify-between">
             <div className="flex flex-wrap gap-4">
               {/* Difficulty filter */}
-              <select 
+              <select
                 className="select select-bordered"
                 value={filterDifficulty.value}
                 onChange={(e) => filterDifficulty.value = (e.currentTarget as HTMLSelectElement).value as Difficulty | "all"}
@@ -227,7 +245,7 @@ export default function TriviaAdminPanel() {
               </select>
 
               {/* Tag filter */}
-              <select 
+              <select
                 className="select select-bordered"
                 value={filterTag.value}
                 onChange={(e) => filterTag.value = (e.currentTarget as HTMLSelectElement).value as Tag | "all"}
@@ -240,8 +258,8 @@ export default function TriviaAdminPanel() {
 
               {/* Flagged filter */}
               <label className="label cursor-pointer gap-2">
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   className="checkbox checkbox-primary"
                   checked={filterFlagged.value}
                   onChange={(e) => filterFlagged.value = (e.currentTarget as HTMLInputElement).checked}
@@ -251,21 +269,21 @@ export default function TriviaAdminPanel() {
             </div>
 
             <div className="flex gap-2">
-              <button 
-              type="button"
+              <button
+                type="button"
                 className="btn btn-warning btn-sm"
                 onClick={resetAllAnswers}
                 disabled={loading.value}
               >
                 Reset All Answers
               </button>
-              <button 
-              type="button"
+              <button
+                type="button"
                 className="btn btn-primary btn-sm"
                 onClick={openCreateModal}
                 disabled={loading.value}
               >
-                + New Question
+                New Question
               </button>
             </div>
           </div>
@@ -294,7 +312,7 @@ export default function TriviaAdminPanel() {
               <div className="card-body">
                 <div className="flex justify-between items-start gap-4">
                   <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
                       <span className={`badge ${
                         q.difficulty === "easy" ? "badge-success" :
                         q.difficulty === "medium" ? "badge-warning" :
@@ -307,6 +325,11 @@ export default function TriviaAdminPanel() {
                           {tag.replace(/_/g, " ")}
                         </span>
                       ))}
+                      {(q.customTags ?? []).map(tag => (
+                        <span key={tag} className="badge badge-outline badge-accent">
+                          {tag}
+                        </span>
+                      ))}
                       {q.answeredCorrectly && (
                         <span className="badge badge-info">Answered</span>
                       )}
@@ -314,34 +337,34 @@ export default function TriviaAdminPanel() {
                         <span className="badge badge-warning">🚩 Flagged</span>
                       )}
                     </div>
-                    
+
                     <h3 className="text-lg font-semibold mb-2">{q.question}</h3>
-                    
+
                     <div className="text-sm opacity-80">
                       <strong>Answers:</strong> {q.answers.join(", ")}
                     </div>
                   </div>
 
                   <div className="flex gap-2">
-                    <button 
-                    type="button"
+                    <button
+                      type="button"
                       className="btn btn-sm btn-ghost"
                       onClick={() => toggleFlag(q.id)}
                       title={q.flaggedForReview ? "Unflag" : "Flag for review"}
                     >
                       🚩
                     </button>
-                    <button 
-                    type="button"
+                    <button
+                      type="button"
                       className="btn btn-sm btn-primary"
                       onClick={() => openEditModal(q)}
                     >
                       Edit
                     </button>
-                    <button 
-                    type="button"
+                    <button
+                      type="button"
                       className="btn btn-sm btn-error"
-                      onClick={() => deleteQuestion(q.id, false)}
+                      onClick={() => deleteQuestion(q.id)}
                     >
                       Delete
                     </button>
@@ -360,14 +383,14 @@ export default function TriviaAdminPanel() {
             <h3 className="font-bold text-lg mb-4">
               {editingQuestion.value ? "Edit Question" : "Create Question"}
             </h3>
-            
+
             <form onSubmit={saveQuestion} className="space-y-4">
               {/* Question */}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Question *</span>
                 </label>
-                <textarea 
+                <textarea
                   className="textarea textarea-bordered h-24"
                   placeholder="Enter the question"
                   value={formQuestion.value}
@@ -381,7 +404,7 @@ export default function TriviaAdminPanel() {
                 <label className="label">
                   <span className="label-text">Answers * (comma-separated)</span>
                 </label>
-                <input 
+                <input
                   type="text"
                   className="input input-bordered"
                   placeholder="Answer 1, Answer 2, Answer 3"
@@ -396,7 +419,7 @@ export default function TriviaAdminPanel() {
                 <label className="label">
                   <span className="label-text">Difficulty *</span>
                 </label>
-                <select 
+                <select
                   className="select select-bordered"
                   value={formDifficulty.value}
                   onChange={(e) => formDifficulty.value = (e.currentTarget as HTMLSelectElement).value as Difficulty}
@@ -427,16 +450,30 @@ export default function TriviaAdminPanel() {
                 </div>
               </div>
 
+              {/* Custom Tags */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Custom Tags (comma-separated, optional)</span>
+                </label>
+                <input
+                  type="text"
+                  className="input input-bordered"
+                  placeholder="e.g. 90s, Olympics, Beatles"
+                  value={formCustomTags.value}
+                  onInput={(e) => formCustomTags.value = (e.currentTarget as HTMLInputElement).value}
+                />
+              </div>
+
               {/* Actions */}
               <div className="modal-action">
-                <button 
+                <button
                   type="button"
                   className="btn"
                   onClick={() => showModal.value = false}
                 >
                   Cancel
                 </button>
-                <button 
+                <button
                   type="submit"
                   className="btn btn-primary"
                   disabled={loading.value}
@@ -446,7 +483,7 @@ export default function TriviaAdminPanel() {
               </div>
             </form>
           </div>
-          <div 
+          <div
             className="modal-backdrop"
             onClick={() => showModal.value = false}
           />
