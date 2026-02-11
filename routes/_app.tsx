@@ -10,7 +10,6 @@ export default define.page(function App({ Component }) {
         <title>Hungry for the Best</title>
       </head>
       <body>
-        <p>Hello World</p>
         <Component />
       </body>
     </html>

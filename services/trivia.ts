@@ -6,7 +6,15 @@ import type {
 } from "../types/trivia.ts";
 
 /// <reference lib="deno.unstable" />
-const kv = await Deno.openKv();
+
+let kv: Deno.Kv;
+
+async function getKv() {
+  if (!kv) {
+    kv = await Deno.openKv();
+  }
+  return kv;
+}
 
 // --- Create ---
 
@@ -26,6 +34,7 @@ export async function createTrivia(
     flaggedForReview: false,
   };
 
+  const kv = await getKv();
   const atomic = kv.atomic();
 
   // Primary key
@@ -52,6 +61,7 @@ export async function createTrivia(
 export async function getTriviaById(
   id: string,
 ): Promise<TriviaQuestion | null> {
+  const kv = await getKv();
   const entry = await kv.get<TriviaQuestion>(["trivia", id]);
   return entry.value;
 }
@@ -59,6 +69,7 @@ export async function getTriviaById(
 // --- Read (all, excluding soft-deleted) ---
 
 export async function getAllTrivia(): Promise<TriviaQuestion[]> {
+  const kv = await getKv();
   const results: TriviaQuestion[] = [];
   const entries = kv.list<TriviaQuestion>({ prefix: ["trivia"] });
 
@@ -79,6 +90,7 @@ export async function getAllTrivia(): Promise<TriviaQuestion[]> {
 export async function getTriviaByDifficulty(
   difficulty: Difficulty,
 ): Promise<TriviaQuestion[]> {
+  const kv = await getKv();
   const results: TriviaQuestion[] = [];
   const entries = kv.list<string>({
     prefix: ["trivia_by_difficulty", difficulty],
@@ -86,6 +98,7 @@ export async function getTriviaByDifficulty(
 
   for await (const entry of entries) {
     const id = entry.value;
+    // getTriviaById handles its own getKv call, but since we are awaiting, it is safe.
     const question = await getTriviaById(id);
     if (question && !question.isDeleted) {
       results.push(question);
@@ -98,6 +111,7 @@ export async function getTriviaByDifficulty(
 // --- Read (by tag) ---
 
 export async function getTriviaByTag(tag: Tag): Promise<TriviaQuestion[]> {
+  const kv = await getKv();
   const results: TriviaQuestion[] = [];
   const entries = kv.list<string>({ prefix: ["trivia_by_tag", tag] });
 
@@ -132,10 +146,11 @@ export async function getFlaggedTrivia(): Promise<TriviaQuestion[]> {
 
 export async function updateTrivia(
   id: string,
-  updates: Partial<
-    Omit<TriviaQuestion, "id">
-  >,
+  updates: Partial<Omit<TriviaQuestion, "id">>,
 ): Promise<TriviaQuestion | null> {
+  // We need the KV instance for the atomic operation later
+  const kv = await getKv();
+  
   const existing = await getTriviaById(id);
   if (!existing) return null;
 
@@ -210,6 +225,7 @@ export function deleteTrivia(
 // --- Hard delete (permanently removes from KV) ---
 
 export async function hardDeleteTrivia(id: string): Promise<boolean> {
+  const kv = await getKv();
   const existing = await getTriviaById(id);
   if (!existing) return false;
 

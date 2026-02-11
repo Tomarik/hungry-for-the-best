@@ -1,6 +1,13 @@
 /// <reference lib="deno.unstable" />
 
-const kv = await Deno.openKv();
+let kv: Deno.Kv;
+
+async function getKv() {
+  if (!kv) {
+    kv = await Deno.openKv();
+  }
+  return kv;
+}
 
 export interface Session {
   id: string;
@@ -22,6 +29,9 @@ export async function createSession(): Promise<Session> {
     expiresAt: expiresAt.toISOString(),
   };
 
+  // Get the KV instance
+  const kv = await getKv();
+
   // Store session in KV with expiration
   await kv.set(["sessions", id], session, {
     expireIn: SESSION_DURATION_MS,
@@ -32,6 +42,9 @@ export async function createSession(): Promise<Session> {
 
 // Verify a session exists and is valid
 export async function verifySession(sessionId: string): Promise<boolean> {
+  // Get the KV instance
+  const kv = await getKv();
+  
   const entry = await kv.get<Session>(["sessions", sessionId]);
   
   if (!entry.value) {
@@ -47,6 +60,9 @@ export async function verifySession(sessionId: string): Promise<boolean> {
 
 // Delete a session (logout)
 export async function deleteSession(sessionId: string): Promise<void> {
+  // Get the KV instance
+  const kv = await getKv();
+  
   await kv.delete(["sessions", sessionId]);
 }
 
