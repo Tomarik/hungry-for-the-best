@@ -2,17 +2,16 @@ import { Head } from "fresh/runtime";
 import { define } from "../utils.ts";
 import { verifySession } from "../services/auth.ts";
 import TriviaAdminPanel from "../islands/TriviaAdminPanel.tsx";
+import LogoutButton from "../islands/LogoutButton.tsx";
 
 export const handler = define.handlers({
   async GET(ctx) {
-    // Check for session cookie
     const cookies = ctx.req.headers.get("cookie");
     const sessionId = cookies
       ?.split(";")
       .find((c) => c.trim().startsWith("session="))
       ?.split("=")[1];
 
-    // Verify session — redirect to home (login) if invalid
     if (!sessionId || !(await verifySession(sessionId))) {
       return new Response(null, {
         status: 302,
@@ -25,11 +24,6 @@ export const handler = define.handlers({
 });
 
 export default define.page(function TriviaAdmin(_ctx) {
-  const handleLogout = async () => {
-    await fetch("/api/auth/logout", { method: "POST" });
-    globalThis.location.href = "/";
-  };
-
   return (
     <div class="px-4 py-8 mx-auto min-h-screen" data-theme="luxury">
       <Head>
@@ -39,12 +33,7 @@ export default define.page(function TriviaAdmin(_ctx) {
         <div class="mb-8">
           <div className="flex justify-between items-center mb-2">
             <h1 className="text-4xl font-bold">Trivia Admin Portal</h1>
-            <button type="submit"
-              onClick={() => handleLogout()}
-              className="btn btn-ghost btn-sm"
-            >
-              Logout
-            </button>
+            <LogoutButton />
           </div>
           <p className="text-center text-base-content/60">
             Manage trivia questions for your game nights
