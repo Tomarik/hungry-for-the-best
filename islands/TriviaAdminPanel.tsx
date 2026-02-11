@@ -1,6 +1,6 @@
-import { useSignal, useComputed } from "@preact/signals";
+import { useComputed, useSignal } from "@preact/signals";
 import { useEffect } from "preact/hooks";
-import type { TriviaQuestion, Difficulty, Tag } from "../types/trivia.ts";
+import type { Difficulty, Tag, TriviaQuestion } from "../types/trivia.ts";
 
 const DIFFICULTIES = ["easy", "medium", "hard"] as const;
 const TAGS = [
@@ -34,7 +34,7 @@ export default function TriviaAdminPanel() {
   const formAnswers = useSignal("");
   const formDifficulty = useSignal<Difficulty>("easy");
   // UPDATED: Defaults to empty array instead of ["general"]
-  const formTags = useSignal<Tag[]>([]); 
+  const formTags = useSignal<Tag[]>([]);
   const formCustomTags = useSignal("");
 
   // Filtered questions
@@ -42,15 +42,19 @@ export default function TriviaAdminPanel() {
     let filtered = questions.value;
 
     if (filterDifficulty.value !== "all") {
-      filtered = filtered.filter(q => q.difficulty === filterDifficulty.value);
+      filtered = filtered.filter((q) =>
+        q.difficulty === filterDifficulty.value
+      );
     }
 
     if (filterTag.value !== "all") {
-      filtered = filtered.filter(q => q.tags.includes(filterTag.value as Tag));
+      filtered = filtered.filter((q) =>
+        q.tags.includes(filterTag.value as Tag)
+      );
     }
 
     if (filterFlagged.value) {
-      filtered = filtered.filter(q => q.flaggedForReview);
+      filtered = filtered.filter((q) => q.flaggedForReview);
     }
 
     return filtered;
@@ -76,6 +80,19 @@ export default function TriviaAdminPanel() {
     loadQuestions();
   }, []);
 
+  // Download all questions as JSON
+  const downloadJson = () => {
+    const json = JSON.stringify(questions.value, null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    const timestamp = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = `trivia-questions-${timestamp}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   // Open modal for creating new question
   const openCreateModal = () => {
     editingQuestion.value = null;
@@ -83,7 +100,7 @@ export default function TriviaAdminPanel() {
     formAnswers.value = "";
     formDifficulty.value = "easy";
     // UPDATED: Sets tags to empty array
-    formTags.value = []; 
+    formTags.value = [];
     formCustomTags.value = "";
     showModal.value = true;
   };
@@ -105,16 +122,18 @@ export default function TriviaAdminPanel() {
 
     const answers = formAnswers.value
       .split(",")
-      .map(a => a.trim())
-      .filter(a => a.length > 0);
+      .map((a) => a.trim())
+      .filter((a) => a.length > 0);
 
     const customTags = formCustomTags.value
       .split(",")
-      .map(t => t.trim())
-      .filter(t => t.length > 0);
+      .map((t) => t.trim())
+      .filter((t) => t.length > 0);
 
     // Validation ensures at least one tag is selected
-    if (!formQuestion.value || answers.length === 0 || formTags.value.length === 0) {
+    if (
+      !formQuestion.value || answers.length === 0 || formTags.value.length === 0
+    ) {
       alert("Please fill in all required fields and select at least one tag.");
       return;
     }
@@ -132,11 +151,14 @@ export default function TriviaAdminPanel() {
 
       if (editingQuestion.value) {
         // Update existing
-        const response = await fetch(`/api/trivia/questions/${editingQuestion.value.id}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
+        const response = await fetch(
+          `/api/trivia/questions/${editingQuestion.value.id}`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          },
+        );
 
         if (!response.ok) throw new Error("Failed to update");
       } else {
@@ -162,11 +184,15 @@ export default function TriviaAdminPanel() {
 
   // Delete question (always permanent)
   const deleteQuestion = async (id: string) => {
-    if (!confirm("Permanently delete this question? This cannot be undone!")) return;
+    if (!confirm("Permanently delete this question? This cannot be undone!")) {
+      return;
+    }
 
     try {
       loading.value = true;
-      const response = await fetch(`/api/trivia/questions/${id}`, { method: "DELETE" });
+      const response = await fetch(`/api/trivia/questions/${id}`, {
+        method: "DELETE",
+      });
 
       if (!response.ok) throw new Error("Failed to delete");
 
@@ -197,7 +223,11 @@ export default function TriviaAdminPanel() {
 
   // Reset all answers
   const resetAllAnswers = async () => {
-    if (!confirm("Reset all answered questions? This will mark all questions as unanswered.")) {
+    if (
+      !confirm(
+        "Reset all answered questions? This will mark all questions as unanswered.",
+      )
+    ) {
       return;
     }
 
@@ -223,7 +253,7 @@ export default function TriviaAdminPanel() {
   // Toggle tag selection
   const toggleTag = (tag: Tag) => {
     if (formTags.value.includes(tag)) {
-      formTags.value = formTags.value.filter(t => t !== tag);
+      formTags.value = formTags.value.filter((t) => t !== tag);
     } else {
       formTags.value = [...formTags.value, tag];
     }
@@ -240,11 +270,17 @@ export default function TriviaAdminPanel() {
               <select
                 className="select select-bordered"
                 value={filterDifficulty.value}
-                onChange={(e) => filterDifficulty.value = (e.currentTarget as HTMLSelectElement).value as Difficulty | "all"}
+                onChange={(e) =>
+                  filterDifficulty.value =
+                    (e.currentTarget as HTMLSelectElement).value as
+                      | Difficulty
+                      | "all"}
               >
                 <option value="all">All Difficulties</option>
-                {DIFFICULTIES.map(d => (
-                  <option key={d} value={d}>{d.charAt(0).toUpperCase() + d.slice(1)}</option>
+                {DIFFICULTIES.map((d) => (
+                  <option key={d} value={d}>
+                    {d.charAt(0).toUpperCase() + d.slice(1)}
+                  </option>
                 ))}
               </select>
 
@@ -252,11 +288,16 @@ export default function TriviaAdminPanel() {
               <select
                 className="select select-bordered"
                 value={filterTag.value}
-                onChange={(e) => filterTag.value = (e.currentTarget as HTMLSelectElement).value as Tag | "all"}
+                onChange={(e) =>
+                  filterTag.value = (e.currentTarget as HTMLSelectElement)
+                    .value as Tag | "all"}
               >
                 <option value="all">All Tags</option>
-                {TAGS.map(t => (
-                  <option key={t} value={t}>{t.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase())}</option>
+                {TAGS.map((t) => (
+                  <option key={t} value={t}>
+                    {t.replace(/_/g, " ").replace(/\b\w/g, (l) =>
+                      l.toUpperCase())}
+                  </option>
                 ))}
               </select>
 
@@ -266,7 +307,9 @@ export default function TriviaAdminPanel() {
                   type="checkbox"
                   className="checkbox checkbox-primary"
                   checked={filterFlagged.value}
-                  onChange={(e) => filterFlagged.value = (e.currentTarget as HTMLInputElement).checked}
+                  onChange={(e) =>
+                    filterFlagged.value =
+                      (e.currentTarget as HTMLInputElement).checked}
                 />
                 <span className="label-text">Flagged Only</span>
               </label>
@@ -275,110 +318,138 @@ export default function TriviaAdminPanel() {
             <div className="flex gap-2">
               <button
                 type="button"
-                className="btn btn-warning btn-sm"
-                onClick={resetAllAnswers}
-                disabled={loading.value}
-              >
-                Reset All Answers
-              </button>
-              <button
-                type="button"
                 className="btn btn-primary btn-sm"
                 onClick={openCreateModal}
                 disabled={loading.value}
               >
                 New Question
               </button>
+              <button
+                type="button"
+                className="btn btn-success btn-sm"
+                onClick={downloadJson}
+                disabled={loading.value || questions.value.length === 0}
+                title="Download all questions as JSON"
+              >
+                Download JSON
+              </button>
+              <button
+                type="button"
+                className="btn btn-warning btn-sm"
+                onClick={resetAllAnswers}
+                disabled={loading.value}
+              >
+                Reset All Answers
+              </button>
             </div>
           </div>
 
           <div className="text-sm opacity-60">
-            Showing {filteredQuestions.value.length} of {questions.value.length} questions
+            Showing {filteredQuestions.value.length} of {questions.value.length}
+            {" "}
+            questions
           </div>
         </div>
       </div>
 
       {/* Questions list */}
-      {loading.value ? (
-        <div className="flex justify-center p-8">
-          <span className="loading loading-spinner loading-lg"></span>
-        </div>
-      ) : filteredQuestions.value.length === 0 ? (
-        <div className="card bg-base-200">
-          <div className="card-body text-center">
-            <p className="text-lg opacity-60">No questions found</p>
+      {loading.value
+        ? (
+          <div className="flex justify-center p-8">
+            <span className="loading loading-spinner loading-lg"></span>
           </div>
-        </div>
-      ) : (
-        <div className="space-y-4">
-          {filteredQuestions.value.map(q => (
-            <div key={q.id} className="card bg-base-200">
-              <div className="card-body">
-                <div className="flex justify-between items-start gap-4">
-                  <div className="flex-1">
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <span className={`badge ${
-                        q.difficulty === "easy" ? "badge-success" :
-                        q.difficulty === "medium" ? "badge-warning" :
-                        "badge-error"
-                      }`}>
-                        {q.difficulty}
-                      </span>
-                      {q.tags.map(tag => (
-                        <span key={tag} className="badge badge-ghost">
-                          {tag.replace(/_/g, " ")}
+        )
+        : filteredQuestions.value.length === 0
+        ? (
+          <div className="card bg-base-200">
+            <div className="card-body text-center">
+              <p className="text-lg opacity-60">No questions found</p>
+            </div>
+          </div>
+        )
+        : (
+          <div className="space-y-4">
+            {filteredQuestions.value.map((q) => (
+              <div key={q.id} className="card bg-base-200">
+                <div className="card-body">
+                  <div className="flex justify-between items-start gap-4">
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
+                        <span
+                          className={`badge ${
+                            q.difficulty === "easy"
+                              ? "badge-success"
+                              : q.difficulty === "medium"
+                              ? "badge-warning"
+                              : "badge-error"
+                          }`}
+                        >
+                          {q.difficulty}
                         </span>
-                      ))}
-                      {(q.customTags ?? []).map(tag => (
-                        <span key={tag} className="badge badge-outline badge-accent">
-                          {tag}
-                        </span>
-                      ))}
-                      {q.answeredCorrectly && (
-                        <span className="badge badge-info">Answered</span>
-                      )}
-                      {q.flaggedForReview && (
-                        <span className="badge badge-warning">🚩 Flagged</span>
-                      )}
+                        {q.tags.map((tag) => (
+                          <span key={tag} className="badge badge-ghost">
+                            {tag.replace(/_/g, " ")}
+                          </span>
+                        ))}
+                        {(q.customTags ?? []).map((tag) => (
+                          <span
+                            key={tag}
+                            className="badge badge-outline badge-accent"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                        {q.answeredCorrectly && (
+                          <span className="badge badge-info">Answered</span>
+                        )}
+                        {q.flaggedForReview && (
+                          <span className="badge badge-warning">
+                            🚩 Flagged
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="text-lg font-semibold mb-2">
+                        {q.question}
+                      </h3>
+
+                      <div className="text-sm opacity-80">
+                        <strong>Answers:</strong> {q.answers.join(", ")}
+                      </div>
                     </div>
 
-                    <h3 className="text-lg font-semibold mb-2">{q.question}</h3>
-
-                    <div className="text-sm opacity-80">
-                      <strong>Answers:</strong> {q.answers.join(", ")}
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-ghost"
+                        onClick={() => toggleFlag(q.id)}
+                        title={q.flaggedForReview
+                          ? "Unflag"
+                          : "Flag for review"}
+                      >
+                        🚩
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-primary"
+                        onClick={() => openEditModal(q)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-error"
+                        onClick={() => deleteQuestion(q.id)}
+                      >
+                        Delete
+                      </button>
                     </div>
-                  </div>
-
-                  <div className="flex gap-2">
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-ghost"
-                      onClick={() => toggleFlag(q.id)}
-                      title={q.flaggedForReview ? "Unflag" : "Flag for review"}
-                    >
-                      🚩
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-primary"
-                      onClick={() => openEditModal(q)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-error"
-                      onClick={() => deleteQuestion(q.id)}
-                    >
-                      Delete
-                    </button>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
 
       {/* Create/Edit Modal */}
       {showModal.value && (
@@ -398,7 +469,9 @@ export default function TriviaAdminPanel() {
                   className="textarea textarea-bordered h-24"
                   placeholder="Enter the question"
                   value={formQuestion.value}
-                  onInput={(e) => formQuestion.value = (e.currentTarget as HTMLTextAreaElement).value}
+                  onInput={(e) =>
+                    formQuestion.value =
+                      (e.currentTarget as HTMLTextAreaElement).value}
                   required
                 />
               </div>
@@ -406,14 +479,18 @@ export default function TriviaAdminPanel() {
               {/* Answers */}
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Answers * (comma-separated)</span>
+                  <span className="label-text">
+                    Answers * (comma-separated)
+                  </span>
                 </label>
                 <input
                   type="text"
                   className="input input-bordered"
                   placeholder="Answer 1, Answer 2, Answer 3"
                   value={formAnswers.value}
-                  onInput={(e) => formAnswers.value = (e.currentTarget as HTMLInputElement).value}
+                  onInput={(e) =>
+                    formAnswers.value =
+                      (e.currentTarget as HTMLInputElement).value}
                   required
                 />
               </div>
@@ -426,11 +503,16 @@ export default function TriviaAdminPanel() {
                 <select
                   className="select select-bordered"
                   value={formDifficulty.value}
-                  onChange={(e) => formDifficulty.value = (e.currentTarget as HTMLSelectElement).value as Difficulty}
+                  onChange={(e) =>
+                    formDifficulty.value =
+                      (e.currentTarget as HTMLSelectElement)
+                        .value as Difficulty}
                   required
                 >
-                  {DIFFICULTIES.map(d => (
-                    <option key={d} value={d}>{d.charAt(0).toUpperCase() + d.slice(1)}</option>
+                  {DIFFICULTIES.map((d) => (
+                    <option key={d} value={d}>
+                      {d.charAt(0).toUpperCase() + d.slice(1)}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -438,17 +520,24 @@ export default function TriviaAdminPanel() {
               {/* Tags */}
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Tags * (select at least one)</span>
+                  <span className="label-text">
+                    Tags * (select at least one)
+                  </span>
                 </label>
                 <div className="flex flex-wrap gap-2">
-                  {TAGS.map(tag => (
+                  {TAGS.map((tag) => (
                     <button
                       key={tag}
                       type="button"
-                      className={`btn btn-sm ${formTags.value.includes(tag) ? "btn-primary" : "btn-outline"}`}
+                      className={`btn btn-sm ${
+                        formTags.value.includes(tag)
+                          ? "btn-primary"
+                          : "btn-outline"
+                      }`}
                       onClick={() => toggleTag(tag)}
                     >
-                      {tag.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase())}
+                      {tag.replace(/_/g, " ").replace(/\b\w/g, (l) =>
+                        l.toUpperCase())}
                     </button>
                   ))}
                 </div>
@@ -457,14 +546,18 @@ export default function TriviaAdminPanel() {
               {/* Custom Tags */}
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Custom Tags (comma-separated, optional)</span>
+                  <span className="label-text">
+                    Custom Tags (comma-separated, optional)
+                  </span>
                 </label>
                 <input
                   type="text"
                   className="input input-bordered"
                   placeholder="e.g. 90s, Olympics, Beatles"
                   value={formCustomTags.value}
-                  onInput={(e) => formCustomTags.value = (e.currentTarget as HTMLInputElement).value}
+                  onInput={(e) =>
+                    formCustomTags.value =
+                      (e.currentTarget as HTMLInputElement).value}
                 />
               </div>
 
