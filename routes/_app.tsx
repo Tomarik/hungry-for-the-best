@@ -1,4 +1,5 @@
 import { define } from "../utils.ts";
+import "../assets/styles.css";
 
 export default define.page(function App({ Component }) {
   return (
@@ -9,6 +10,7 @@ export default define.page(function App({ Component }) {
         <title>Hungry for the Best</title>
       </head>
       <body>
+        <p>Hello World</p>
         <Component />
       </body>
     </html>
