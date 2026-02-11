@@ -252,6 +252,7 @@ export default function TriviaAdminPanel() {
 
             <div className="flex gap-2">
               <button 
+              type="button"
                 className="btn btn-warning btn-sm"
                 onClick={resetAllAnswers}
                 disabled={loading.value}
@@ -259,7 +260,8 @@ export default function TriviaAdminPanel() {
                 Reset All Answers
               </button>
               <button 
-                className="btn btn-primary"
+              type="button"
+                className="btn btn-primary btn-sm"
                 onClick={openCreateModal}
                 disabled={loading.value}
               >
@@ -322,6 +324,7 @@ export default function TriviaAdminPanel() {
 
                   <div className="flex gap-2">
                     <button 
+                    type="button"
                       className="btn btn-sm btn-ghost"
                       onClick={() => toggleFlag(q.id)}
                       title={q.flaggedForReview ? "Unflag" : "Flag for review"}
@@ -329,12 +332,14 @@ export default function TriviaAdminPanel() {
                       🚩
                     </button>
                     <button 
+                    type="button"
                       className="btn btn-sm btn-primary"
                       onClick={() => openEditModal(q)}
                     >
                       Edit
                     </button>
                     <button 
+                    type="button"
                       className="btn btn-sm btn-error"
                       onClick={() => deleteQuestion(q.id, false)}
                     >

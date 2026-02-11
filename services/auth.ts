@@ -15,7 +15,7 @@ export interface Session {
   expiresAt: string;
 }
 
-const SESSION_DURATION_MS = 1000 * 60 * 60 * 12; // 12 hours
+const SESSION_DURATION_MS = 1000 * 60 * 60 * 4; // 4 hours
 
 // Create a new session
 export async function createSession(): Promise<Session> {

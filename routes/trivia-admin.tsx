@@ -15,9 +15,6 @@ export default define.page(function TriviaAdmin() {
             <h1 className="text-4xl font-bold text-base-content">Trivia Admin Portal</h1>
             <LogoutButton />
           </div>
-          <p className="text-center text-base-content/60">
-            Manage trivia questions for your game nights
-          </p>
         </div>
         <TriviaAdminPanel />
       </div>

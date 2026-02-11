@@ -5,40 +5,23 @@ export const app = new App<State>();
 
 app.use(staticFiles());
 
-// Pass a shared value from a middleware
-app.use(async (ctx) => {
-  ctx.state.shared = "hello";
-  return await ctx.next();
-});
+// Helper to extract session ID from cookies
+function getSessionId(req: Request): string | undefined {
+  return req.headers
+    .get("cookie")
+    ?.split(";")
+    .find((c) => c.trim().startsWith("session="))
+    ?.split("=")[1];
+}
 
-// this is the same as the /api/:name route defined via a file. feel free to delete this!
-app.get("/api2/:name", (ctx) => {
-  const name = ctx.params.name;
-  return new Response(
-    `Hello, ${name.charAt(0).toUpperCase() + name.slice(1)}!`,
-  );
-});
-
-// this can also be defined via a file. feel free to delete this!
-const exampleLoggerMiddleware = define.middleware((ctx) => {
-  console.log(`${ctx.req.method} ${ctx.req.url}`);
-  return ctx.next();
-});
-
-app.use(exampleLoggerMiddleware);
-
-// Auth guard for admin routes
+// Auth middleware
 app.use(async (ctx) => {
   const url = new URL(ctx.req.url);
-  
+
+  // Protect admin routes — redirect to login if not authenticated
   if (url.pathname.startsWith("/trivia-admin")) {
     const { verifySession } = await import("./services/auth.ts");
-    
-    const cookies = ctx.req.headers.get("cookie");
-    const sessionId = cookies
-      ?.split(";")
-      .find((c) => c.trim().startsWith("session="))
-      ?.split("=")[1];
+    const sessionId = getSessionId(ctx.req);
 
     if (!sessionId || !(await verifySession(sessionId))) {
       return new Response(null, {
@@ -48,8 +31,27 @@ app.use(async (ctx) => {
     }
   }
 
+  // Redirect logged-in users away from login page
+  if (url.pathname === "/") {
+    const { verifySession } = await import("./services/auth.ts");
+    const sessionId = getSessionId(ctx.req);
+
+    if (sessionId && (await verifySession(sessionId))) {
+      return new Response(null, {
+        status: 302,
+        headers: { Location: "/trivia-admin" },
+      });
+    }
+  }
+
   return await ctx.next();
 });
 
-// Include file-system based routes here
+// Logger middleware
+const loggerMiddleware = define.middleware((ctx) => {
+  console.log(`${ctx.req.method} ${ctx.req.url}`);
+  return ctx.next();
+});
+app.use(loggerMiddleware);
+
 app.fsRoutes();
