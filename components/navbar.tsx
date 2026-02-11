@@ -59,14 +59,7 @@ export default function Navbar() {
                   Home
                 </a>
               </li>
-              <li className="bg-transparent">
-                <a
-                  className="text-xl hover:text-primary hover:bg-transparent font-[Changa_One] tracking-widest"
-                  href="/tiki"
-                >
-                  Tiki
-                </a>
-              </li>
+
               <li className="bg-transparent">
                 <a
                   className="text-xl hover:text-primary hover:bg-transparent font-[Poppins]"
@@ -79,7 +72,7 @@ export default function Navbar() {
               {/* Version text at bottom */}
               <div className="absolute bottom-4 left-0 right-0 flex justify-center">
                 <span className="text-xs text-base-content/50">
-                  Version 11.27.2025
+                  Version 2.11.2026
                 </span>
               </div>
             </ul>
@@ -89,8 +82,7 @@ export default function Navbar() {
       <div className="max-w-screen-md mx-auto flex flex-col items-center justify-center">
         <a
           href="/"
-          className="text-xl md:text-2xl lg:text-3xl font-[Permanent_Marker] tracking-widest no-underline"
-        >
+          className="text-xl md:text-2xl lg:text-3xl font-[Permanent_Marker] tracking-widest no-underline">
           Hungry for the Best
         </a>
       </div>
