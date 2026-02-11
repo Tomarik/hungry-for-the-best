@@ -1,11 +1,11 @@
-import { define } from "../../../../utils.ts";
+import { define } from "../../../../../utils.ts";
 import {
   getTriviaById,
   updateTrivia,
   deleteTrivia,
   hardDeleteTrivia,
-} from "../../../../services/trivia.ts";
-import { DIFFICULTIES, TAGS } from "../../../../types/trivia.ts";
+} from "../../../../../services/trivia.ts";
+import { DIFFICULTIES, TAGS } from "../../../../../types/trivia.ts";
 
 export const handler = define.handlers({
   // GET /api/trivia/questions/:id
@@ -33,7 +33,6 @@ export const handler = define.handlers({
     try {
       const body = await ctx.req.json();
 
-      // Validate optional fields if provided
       if (body.difficulty && !DIFFICULTIES.includes(body.difficulty)) {
         return new Response(
           JSON.stringify({ error: "Invalid difficulty", validOptions: DIFFICULTIES }),
