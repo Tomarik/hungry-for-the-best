@@ -1,5 +1,5 @@
-import { define } from "../../../../../utils.ts";
-import { resetAnswered } from "../../../../../services/trivia.ts";
+import { define } from "../../../../utils.ts";
+import { resetAnswered } from "../../../../services/trivia.ts";
 
 export const handler = define.handlers({
   // POST /api/trivia/questions/:id/reset
