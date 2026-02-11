@@ -68,24 +68,6 @@ export default function Navbar() {
                 </a>
               </li>
 
-              <li className="bg-transparent">
-                <a
-                  className="text-xl hover:text-primary hover:bg-transparent font-[Changa_One] tracking-widest"
-                  href="/demo_rebus"
-                >
-                  Rebus Puzzles
-                </a>
-              </li>
-
-              <li className="bg-transparent">
-                <a
-                  className="text-xl hover:text-primary hover:bg-transparent font-[Changa_One] tracking-widest"
-                  href="/trivia"
-                >
-                  Trivia Questions
-                </a>
-              </li>
-
               {/* Version text at bottom */}
               <div className="absolute bottom-4 left-0 right-0 flex justify-center">
                 <span className="text-xs text-base-content/50">
