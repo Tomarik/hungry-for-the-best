@@ -10,6 +10,7 @@
   "lint": { "rules": { "tags": ["fresh", "recommended"] } },
   "exclude": ["**/_fresh/*"],
   "imports": {
+    "baseline-browser-mapping": "npm:baseline-browser-mapping@^2.9.19",
     "daisyui": "npm:daisyui@^5.1.31",
     "fresh": "jsr:@fresh/core@^2.2.0",
     "preact": "npm:preact@^10.27.2",

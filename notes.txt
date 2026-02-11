@@ -1,0 +1,1 @@
+deno add --dev npm:baseline-browser-mapping@latest

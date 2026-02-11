@@ -19,7 +19,7 @@ export default function LoginForm() {
 
       if (response.ok) {
         // Redirect to admin page
-        window.location.href = "/trivia-admin";
+        globalThis.location.href = "/trivia-admin";
       } else {
         const data = await response.json();
         error.value = data.error || "Invalid password";
