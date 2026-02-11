@@ -23,16 +23,16 @@ export const handler = define.handlers({
   },
 });
 
-export default define.page(function TriviaAdmin(_ctx) {
+export default define.page(function TriviaAdmin() {
   return (
-    <div class="px-4 py-8 mx-auto min-h-screen" data-theme="luxury">
+    <div className="px-4 py-8 mx-auto min-h-screen bg-base-100" data-theme="dracula">
       <Head>
         <title>Hungry for the Best | Trivia Admin</title>
       </Head>
-      <div class="max-w-screen-xl mx-auto">
-        <div class="mb-8">
+      <div className="max-w-screen-xl mx-auto">
+        <div className="mb-8">
           <div className="flex justify-between items-center mb-2">
-            <h1 className="text-4xl font-bold">Trivia Admin Portal</h1>
+            <h1 className="text-4xl font-bold text-base-content">Trivia Admin Portal</h1>
             <LogoutButton />
           </div>
           <p className="text-center text-base-content/60">
