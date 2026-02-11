@@ -67,6 +67,14 @@ export default function Navbar() {
                   Tiki
                 </a>
               </li>
+              <li className="bg-transparent">
+                <a
+                  className="text-xl hover:text-primary hover:bg-transparent font-[Poppins]"
+                  href="/trivia-admin"
+                >
+                  Trivia Admin
+                </a>
+              </li>
 
               {/* Version text at bottom */}
               <div className="absolute bottom-4 left-0 right-0 flex justify-center">
