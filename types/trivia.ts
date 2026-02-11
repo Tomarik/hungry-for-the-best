@@ -14,10 +14,12 @@ export type Tag =
   | "brand"
   | "tech"
   | "sport"
-  | "art";
+  | "art"
+  | "animal";
 
 export const DIFFICULTIES: Difficulty[] = ["easy", "medium", "hard"];
 export const TAGS: Tag[] = [
+
   "general",
   "geography",
   "history",
@@ -31,6 +33,7 @@ export const TAGS: Tag[] = [
   "tech",
   "sport",
   "art",
+  "animal"
 ];
 
 export interface TriviaQuestion {

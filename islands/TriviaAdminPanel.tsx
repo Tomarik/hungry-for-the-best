@@ -4,6 +4,7 @@ import type { TriviaQuestion, Difficulty, Tag } from "../types/trivia.ts";
 
 const DIFFICULTIES = ["easy", "medium", "hard"] as const;
 const TAGS = [
+  "animal",
   "art",
   "brand",
   "general",
@@ -32,7 +33,8 @@ export default function TriviaAdminPanel() {
   const formQuestion = useSignal("");
   const formAnswers = useSignal("");
   const formDifficulty = useSignal<Difficulty>("easy");
-  const formTags = useSignal<Tag[]>(["general"]);
+  // UPDATED: Defaults to empty array instead of ["general"]
+  const formTags = useSignal<Tag[]>([]); 
   const formCustomTags = useSignal("");
 
   // Filtered questions
@@ -80,7 +82,8 @@ export default function TriviaAdminPanel() {
     formQuestion.value = "";
     formAnswers.value = "";
     formDifficulty.value = "easy";
-    formTags.value = ["general"];
+    // UPDATED: Sets tags to empty array
+    formTags.value = []; 
     formCustomTags.value = "";
     showModal.value = true;
   };
@@ -110,8 +113,9 @@ export default function TriviaAdminPanel() {
       .map(t => t.trim())
       .filter(t => t.length > 0);
 
+    // Validation ensures at least one tag is selected
     if (!formQuestion.value || answers.length === 0 || formTags.value.length === 0) {
-      alert("Please fill in all required fields");
+      alert("Please fill in all required fields and select at least one tag.");
       return;
     }
 
