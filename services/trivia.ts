@@ -171,7 +171,7 @@ export async function updateTrivia(
 
 // --- Mark as answered correctly ---
 
-export async function markAnswered(id: string): Promise<TriviaQuestion | null> {
+export function markAnswered(id: string): Promise<TriviaQuestion | null> {
   return updateTrivia(id, {
     answeredCorrectly: true,
     answeredOn: new Date().toISOString(),
@@ -180,7 +180,7 @@ export async function markAnswered(id: string): Promise<TriviaQuestion | null> {
 
 // --- Reset answer status ---
 
-export async function resetAnswered(
+export function resetAnswered(
   id: string,
 ): Promise<TriviaQuestion | null> {
   return updateTrivia(id, {
@@ -201,7 +201,7 @@ export async function toggleFlagged(
 
 // --- Soft delete ---
 
-export async function deleteTrivia(
+export function deleteTrivia(
   id: string,
 ): Promise<TriviaQuestion | null> {
   return updateTrivia(id, { isDeleted: true });

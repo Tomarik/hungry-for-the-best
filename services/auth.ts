@@ -51,7 +51,7 @@ export async function deleteSession(sessionId: string): Promise<void> {
 }
 
 // Verify admin password
-export async function verifyAdminPassword(password: string): Promise<boolean> {
+export function verifyAdminPassword(password: string): boolean {
   const adminPassword = Deno.env.get("ADMIN_PASSWORD");
   
   if (!adminPassword) {
