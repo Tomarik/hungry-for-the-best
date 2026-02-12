@@ -18,8 +18,8 @@ function getSessionId(req: Request): string | undefined {
 app.use(async (ctx) => {
   const url = new URL(ctx.req.url);
 
-  // Protect admin routes — redirect to login if not authenticated
-  if (url.pathname.startsWith("/trivia-admin")) {
+  // Protect admin and play routes — redirect to login if not authenticated
+  if (url.pathname.startsWith("/trivia-admin") || url.pathname.startsWith("/play-trivia")) {
     const { verifySession } = await import("./services/auth.ts");
     const sessionId = getSessionId(ctx.req);
 
