@@ -20,6 +20,7 @@ const TAGS = [
   "space",
   "sport",
   "tech",
+  "travel",
   "tv",
   "video_game",
 ] as const;
@@ -30,6 +31,7 @@ export default function TriviaAdminPanel() {
   const filterDifficulty = useSignal<Difficulty | "all">("all");
   const filterTag = useSignal<Tag | "all">("all");
   const filterFlagged = useSignal(false);
+  const searchQuery = useSignal("");
   const showModal = useSignal(false);
   const editingQuestion = useSignal<TriviaQuestion | null>(null);
 
@@ -59,6 +61,16 @@ export default function TriviaAdminPanel() {
 
     if (filterFlagged.value) {
       filtered = filtered.filter((q) => q.flaggedForReview);
+    }
+
+    // Search filter: match against question text and answer text
+    const query = searchQuery.value.trim().toLowerCase();
+    if (query) {
+      filtered = filtered.filter(
+        (q) =>
+          q.question.toLowerCase().includes(query) ||
+          q.answers.some((a) => a.toLowerCase().includes(query)),
+      );
     }
 
     return filtered;
@@ -225,6 +237,22 @@ export default function TriviaAdminPanel() {
     }
   };
 
+  // Unmark a single question as answered
+  const unmarkAnswered = async (id: string) => {
+    try {
+      const response = await fetch(`/api/trivia/questions/${id}/reset`, {
+        method: "POST",
+      });
+
+      if (!response.ok) throw new Error("Failed to reset answer");
+
+      await loadQuestions();
+    } catch (error) {
+      console.error("Failed to unmark answered:", error);
+      alert("Failed to unmark answered");
+    }
+  };
+
   // Reset all answers
   const resetAllAnswers = async () => {
     if (
@@ -269,7 +297,18 @@ export default function TriviaAdminPanel() {
       <div className="card bg-base-200">
         <div className="card-body">
           <div className="flex flex-wrap gap-4 items-center justify-between">
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 items-center">
+              {/* Search input */}
+              <input
+                type="text"
+                className="input input-bordered"
+                placeholder="Search questions & answers…"
+                value={searchQuery.value}
+                onInput={(e) =>
+                  searchQuery.value =
+                    (e.currentTarget as HTMLInputElement).value}
+              />
+
               {/* Difficulty filter */}
               <select
                 className="select select-bordered"
@@ -423,6 +462,16 @@ export default function TriviaAdminPanel() {
                     </div>
 
                     <div className="flex gap-2">
+                      {q.answeredCorrectly && (
+                        <button
+                          type="button"
+                          className="btn btn-sm btn-info btn-outline"
+                          onClick={() => unmarkAnswered(q.id)}
+                          title="Mark as unanswered"
+                        >
+                          Unmark
+                        </button>
+                      )}
                       <button
                         type="button"
                         className="btn btn-sm btn-ghost"

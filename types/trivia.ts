@@ -19,7 +19,8 @@ export type Tag =
   | "animal"
   | "holiday"
   | "health"
-  | "video_game";
+  | "video_game"
+  | "travel";
 
 export const DIFFICULTIES: Difficulty[] = ["easy", "medium", "hard"];
 export const TAGS: Tag[] = [
@@ -42,6 +43,7 @@ export const TAGS: Tag[] = [
   "animal",
   "health",
   "video_game",
+  "travel"
 ];
 
 export interface TriviaQuestion {
