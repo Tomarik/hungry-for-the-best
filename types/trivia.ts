@@ -16,6 +16,7 @@ export type Tag =
   | "sport"
   | "art"
   | "animal"
+  | "holiday"
   | "health";
 
 export const DIFFICULTIES: Difficulty[] = ["easy", "medium", "hard"];
@@ -24,6 +25,7 @@ export const TAGS: Tag[] = [
   "general",
   "geography",
   "history",
+  "holiday",
   "science",
   "pop_culture",
   "music",

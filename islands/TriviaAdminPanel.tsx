@@ -11,6 +11,7 @@ const TAGS = [
   "geography",
   "health",
   "history",
+  "holiday",
   "movie",
   "music",
   "pop_culture",
