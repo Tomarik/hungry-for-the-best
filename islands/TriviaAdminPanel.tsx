@@ -21,6 +21,7 @@ const TAGS = [
   "sport",
   "tech",
   "tv",
+  "video_game",
 ] as const;
 
 export default function TriviaAdminPanel() {
