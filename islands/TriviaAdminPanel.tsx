@@ -9,6 +9,7 @@ const TAGS = [
   "brand",
   "general",
   "geography",
+  "health",
   "history",
   "movie",
   "music",
