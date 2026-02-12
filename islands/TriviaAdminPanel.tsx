@@ -7,6 +7,7 @@ const TAGS = [
   "animal",
   "art",
   "brand",
+  "food",
   "general",
   "geography",
   "health",

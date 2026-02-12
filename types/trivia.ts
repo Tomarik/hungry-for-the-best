@@ -4,6 +4,7 @@ export type Tag =
 
   | "general"
   | "geography"
+  | "food"
   | "history"
   | "science"
   | "pop_culture"
@@ -24,6 +25,7 @@ export const TAGS: Tag[] = [
 
   "general",
   "geography",
+  "food",
   "history",
   "holiday",
   "science",
