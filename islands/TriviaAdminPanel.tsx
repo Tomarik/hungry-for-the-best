@@ -20,6 +20,7 @@ const TAGS = [
   "space",
   "sport",
   "tech",
+  "toy",
   "travel",
   "tv",
   "video_game",
