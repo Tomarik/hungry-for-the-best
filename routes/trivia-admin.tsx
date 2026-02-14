@@ -14,12 +14,17 @@ export default define.page(function TriviaAdmin() {
           <div className="flex justify-between items-center mb-2">
             <h1 className="text-4xl font-bold text-base-content">Trivia Admin Portal</h1>
             <div className="flex gap-4 items-center">
-              {/* Added Play Trivia Navigation Button */}
               <a 
                 href="/play-trivia" 
                 className="btn btn-primary btn-outline"
               >
                 Play Trivia
+              </a>
+              <a 
+                href="/attract-rebus" 
+                className="btn btn-secondary btn-outline"
+              >
+                Attract Rebus
               </a>
               <LogoutButton />
             </div>
